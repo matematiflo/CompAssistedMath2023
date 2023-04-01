@@ -3,9 +3,9 @@ import data.setoid.basic
 
 def even (n : ℤ) : Prop := ∃ k : ℤ, n = 2 * k
 
-#check even
-#check even 2
-#check even 3
+-- #check even
+-- #check even 2
+-- #check even 3
 
 example : even 2 := by {use 1, rw mul_one}
 -- lemma two_is_even : even 2 := by {use 1, simp}
@@ -19,8 +19,8 @@ def even_diff (n m : ℤ) : Prop := even (n - m)
 --Next we just rename even_diff to r
 def r ( a b : ℤ ) : Prop := even_diff a b
 
-#check equivalence
-#check mk_equivalence
+-- #check equivalence
+-- #check mk_equivalence
 
 theorem r_is_equiv_rel : equivalence r := 
   begin
