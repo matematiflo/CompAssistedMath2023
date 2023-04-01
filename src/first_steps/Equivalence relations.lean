@@ -3,43 +3,46 @@ import data.setoid.basic
 
 def even (n : ℤ) : Prop := ∃ k : ℤ, n = 2 * k
 
+#check even
+#check even 2
+#check even 3
+
+example : even 2 := by {use 1, rw mul_one}
+-- lemma two_is_even : even 2 := by {use 1, simp}
+
 def even_diff (n m : ℤ) : Prop := even (n - m)
 
-infix ` ≡ `:50 := even_diff
+-- infix ` ≡ `:50 := even_diff
 
-def r ( a b : ℤ ) : Prop := a ≡ b
+-- def r ( a b : ℤ ) : Prop := a ≡ b
 
--- theorem r_is_equiv_rel : equivalence r := 
---   begin
---     unfold equivalence,
---     split,
---     {
---       unfold reflexive,
---       unfold r,
---       intro x,
---       unfold even_diff,
---       unfold even,
---       use 0,
---       simp,
---     },
---     split,
---     {
---       unfold symmetric,
---       unfold r, 
---       unfold even_diff,
---       unfold even,
---       intros x y,
---       intro h,
---       cases h with m,
---       use -m,
---       simp,
---       sorry, 
---     },
---     {
---       sorry,
---     },
---   end
+--Next we just rename even_diff to r
+def r ( a b : ℤ ) : Prop := even_diff a b
 
+#check equivalence
+#check mk_equivalence
+
+theorem r_is_equiv_rel : equivalence r := 
+  begin
+    unfold equivalence,
+    --split,
+    repeat { any_goals {split} },
+    {
+      unfold reflexive r, 
+      intro x, 
+      unfold even_diff, 
+      unfold even,
+      use 0,
+      rw mul_zero,
+      rw sub_self,
+    },
+    {
+      sorry,
+    },
+    {
+      sorry,
+    },
+  end
 
 lemma reflexive_r : reflexive r := 
   begin
@@ -70,7 +73,7 @@ lemma symmetric_r : symmetric r :=
     symmetry,
     exact h_k,
   end
-  
+
 lemma transitive_r : transitive r := 
   begin
     unfold transitive r even_diff even,
