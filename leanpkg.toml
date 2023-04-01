@@ -1,4 +1,4 @@
-package]
+[package]
 name = "Comp_assisted_math"
 version = "0.1"
 lean_version = "leanprover-community/lean:3.50.3"
