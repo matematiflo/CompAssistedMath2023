@@ -19,8 +19,16 @@ def even_diff (n m : ℤ) : Prop := even (n - m)
 --Next we just rename even_diff to r
 def r ( a b : ℤ ) : Prop := even_diff a b
 
+-- #check reflexive
+-- #check reflexive r
 -- #check equivalence
 -- #check mk_equivalence
+
+-- We use the 'equivalence' function from mathlib. It uses the functions 'reflexive', 'symmetric' and 'transitive', also in mathlib.
+
+/- 
+equivalence is a function which, to a relation r associates a proof of the fact that r is reflexive, symmetric and transitive. So a term of type equivalence r is a proof of the fact that r is an equivalence relation.
+ -/
 
 theorem r_is_equiv_rel : equivalence r := 
   begin
@@ -71,6 +79,10 @@ theorem r_is_equiv_rel : equivalence r :=
     rw mul_add,
     },
   end
+
+/- 
+Let us prove the theorem differently, using separate lemmas to prove that r is reflexive, symmetric and transitive. First we define a term reflexive_r of type reflexive r. The latter is a term of type Prop, so reflexive_r is a proof of the proposition reflexive r, i.e. a proof of the fact that r is reflexive (by definition of the term reflexive r in mathlib).
+ -/
 
 lemma reflexive_r : reflexive r := 
   begin
@@ -125,7 +137,9 @@ lemma transitive_r : transitive r :=
 theorem r_is_equiv_rel_alt : equivalence r := 
 mk_equivalence r reflexive_r symmetric_r transitive_r 
 
+-- Or, going back to the definition of the mk_equivalence function:
 
+theorem r_is_equiv_rel_yet_another_proof : equivalence r :=
+⟨reflexive_r, symmetric_r, transitive_r⟩
 
-
-
+-- Note: the syntax ⟨reflexive_r, symmetric_r, transitive_r⟩ does not seem to work in tactic mode, at least not directly. 
