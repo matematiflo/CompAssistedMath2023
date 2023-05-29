@@ -2,6 +2,8 @@
 
 Please upload your Notebook and pdf here when you are ready :-)
 
-Ideally, you will put them in a sub-repo with your Team's name on it, so I can identify you easily.
+Ideally, you will use the following format, so I can identify you easily:
+* For the notebook: TeamNickname_Topic.ipynb
+* For the documentation/presentation: TeamNickname_Topic.pdf or TeamNickname_Topic.html
 
 Thank you!
