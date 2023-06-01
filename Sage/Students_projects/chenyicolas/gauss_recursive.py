@@ -24,6 +24,8 @@ def gauss_rec(
     1.2 Current nowcol is guaranteed to have a non-zero entry in some row. (as it's not a zero column)
     2. Create zeroes below the pivot
     3. Solve recursively for m with `nowrow - 1` and `nowcol - 1`
+    
+    Return (at any point) current matrix and stack once running out of rows or cols.
 
     Prints the transformed matrices for each step, with a natural language description and
     returns the accumulated list of elementary_matrices.
@@ -47,7 +49,7 @@ def gauss_rec(
         if trace:
             print(f"\n{indentation}Skipping at least one zero-column...")
         nowcol += 1
-        if nowcol == n_cols - 1:
+        if nowcol == n_cols - 1:  # Another base case
             return m, stack
 
     if trace:
@@ -61,6 +63,8 @@ def gauss_rec(
         if trace:
             stack.append(elem_swap)
         m = mult(elem_swap, m)
+        pivot = m[nowrow][nowcol]
+        assert pivot != 0
         if trace:
             # print(f"Swapped with good pivot row (using: S({n_rows}, {nowrow}, {find_pivot_row_index(column(m[nowrow + 1:], nowcol))}) + nowrow + 1)")
             print(
@@ -70,16 +74,14 @@ def gauss_rec(
     elif trace:
         print(f"\n{indentation}No need to swap rows. Current pivot is fine\n")
 
-    pivot = m[nowrow][nowcol]
-    assert pivot != 0
 
-    # TODO: normalize toprow by dividing by it's pivot simplifying the computation of inv_scalar. Leads to reduced row echelon form?!
+    # TODO: normalize toprow by dividing by it's pivot simplifying the computation of inv_scalar.
 
     if trace:
         print(f"\n{indentation}-- Create zeroes below the pivot --")
+
     # 3. Create zeroes below the pivot
-    for rowindex in range(nowrow + 1, n_rows):  # TODO: create correct range definition!
-        # for rowindex in range(1, n_rows - nowrow): # TODO: check range for recursive calls! Yep, there was a off-by-one bug
+    for rowindex in range(nowrow + 1, n_rows):  
         if m[rowindex][nowcol] == 0:
             continue  # entry below pivot is already 0
         else:
