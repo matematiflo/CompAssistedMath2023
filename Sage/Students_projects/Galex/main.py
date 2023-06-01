@@ -36,7 +36,7 @@ def main():
         yy = vstack([pts[1], regression(pts, REGRESSAND_DEGREE)(pts[0])])
         plotter.plot_pts(xx, yy, ".-.", color=(1, 0.5, 0))
         reg_func = lambda x: regression(pts, REGRESSAND_DEGREE)(x)
-        plotter.measure_error(reg_func, pts[1])
+        plotter.measure_error(reg_func, pts)
 
     plotter.save('/tmp/test.png')
     plotter.show()
