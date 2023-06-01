@@ -43,10 +43,8 @@ class Plotter:
         datamatrix[1:,] += ynoise
         return datamatrix
 
-    def measure_error(self, func, ys):
-        xs = np.linspace(self.XMIN, self.XMAX, len(ys))
-        func_ys = func(xs)
-        plt.text(0.1, 4.9, f"Regression Error: " + str(sum((ys - func_ys)**2)))
+    def measure_error(self, func, pts):
+        plt.text(0.1, 4.9, f"Regression Error: " + str(sum((pts[1] - func(pts[0]))**2)), color=(1,0,0))
 
     def show(self):
         plt.show()
