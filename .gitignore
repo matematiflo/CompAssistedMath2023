@@ -1,4 +1,5 @@
 *.olean
+/_target
 /src/first_steps
 /src/Edinburgh 2023
 .DS_Store
