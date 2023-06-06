@@ -165,7 +165,7 @@ namespace playground
 end playground
 ```
 
-Note that Theorem `my_two_sentences_are_the_same` and `my_brother_and_I_agree` can be written in a way that resembles Theorem `one_plus_one_eq_two` more.
+Note that Theorems `my_two_sentences_are_the_same` and `my_brother_and_I_agree` can be written in a way that resembles Theorem `one_plus_one_eq_two` more.
 
 On the one hand, it is less readable. On the other hand, the information is more directly visible.
 
