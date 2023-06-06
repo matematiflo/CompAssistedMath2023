@@ -17,5 +17,5 @@ Be aware that *Lean 4* is not backwards-compatible with *Lean 3* and that the `.
 
 **Programme of the *Lean* part of the seminar:**
 
-1. Equalities in *Lean* (a first glance)
+1. Introduction to Lean
 1.
