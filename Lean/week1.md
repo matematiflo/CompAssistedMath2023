@@ -129,7 +129,7 @@ def my_brother_s_favourite_integer : nat := 41 + 1
 
 Now let us see a particularly important case, in which we define a term of type `P` for `P`a term of type `Prop`. The meaning of such a definition is encapsulated in the following slogan.
 
-**If `P` is a term of type `Prop`, then defining a term of type `P` means proving `P`**
+**If `P` is a term of type `Prop`, then defining a term of type `P` means proving `P`.**
 
 As earlier, the actual definition of a term `p : P` comes after the `:=` symbol. So here, *what comes after `:=` will be the proof of the proposition `P`*. If we do not know what to put after that symbol, we can always write `sorry` and come back to it later.
 
