@@ -24,6 +24,7 @@ If `#check t` returns `T`, one says that **`t` is a term of type `T`**. This is 
 
 #check "Hello, ".append( "world!" )
 #check 41 + 1
+#check 1 + 1
 
 /- The data types `string` and `ℕ` are themselves terms of type `Type`. You can obtain the symbol `ℕ` by typing `\nat` or `\N` followed by the space bar. You can also just use `nat` instead of `ℕ`. -/
 
