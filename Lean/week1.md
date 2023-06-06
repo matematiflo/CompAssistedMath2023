@@ -270,7 +270,7 @@ Note that `eq.refl ( 1 + 1 )` and `eq.refl 2` work equally well and check that t
 
 At this stage, it might be instructive to try out `#check eq.refl 2` and `#check eq.refl ( 1 + 1 )`. Or even `#check eq.refl my_favourite_integer` and `#check eq.refl my_first_sentence`. See below for the corresponding code and a remark on the content of `eq.refl 2`.
 
-Try also `#check eq.refl` and `#check @eq.refl`. Using `@` should produce something better-looking. -/
+Try also `#check eq.refl` and `#check @eq.refl`. Using `@` should produce something better-looking.
 
 ```lean
 def one_plus_one_eq_two_again : 1 + 1 = 2 := eq.refl (1 + 1)
