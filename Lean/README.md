@@ -15,7 +15,7 @@ In order to work on the `.lean` files, several options are available:
 
 Be aware that *Lean 4* is not backwards-compatible with *Lean 3* and that the `.lean` files in this repository will not work in *Lean 4*.
 
-**Programme of the *Lean* part of the seminar:**
+**Programme of the *Lean* seminar:**
 
 1. Introduction to Lean
 1.
