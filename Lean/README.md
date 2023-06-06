@@ -5,10 +5,17 @@
 
 This is the GitHub repository for the *Introduction to Lean* part of the **(Pro)Seminar on computer-assisted mathematics**, held at the University of Heidelberg in the Summer Semester of 2023.
 
-Below you will find the program of the seminar. For each week, there is a corresponding `.lean` file, which you can use to practice. You can also view a markdown version of the weekly files by clicking on the corresponding `.md` files.
+Below you will find the programme of the seminar. For each week, there is a corresponding `.lean` file, which you can use to practice. You can also view a markdown version of the weekly files by clicking on the corresponding `.md` files.
 
 In order to work on the `.lean` files, several options are available:
 
-* Download the file (either manually or by cloning or forking this repository) and open it in your [CoCalc](https://cocalc.com) account.
-* Open it in *Codespaces* directly from the present repository. In that case, you may not be able to save your changes.
-* Install *Lean 3* on your computer by following the instructions [here](https://leanprover-community.github.io/get_started.html). Be aware that *Lean 4* is not backwards-compatible with *Lean 3* and that the `.lean` files in this repository will not work in *Lean 4*.
+* Download the file and open it in your [CoCalc](https://cocalc.com) account.
+* Fork the [Comp_assisted_math](https://github.com/matematiflo/Comp_assisted_math) repo sitory and, from your own GitHub account, open a *Codespace*. You will need to install the Lean 3 extension for that Codespace. You can do that directly from the Codespace VS code emulator.
+* Install *Lean 3* on your computer by following the instructions [here](https://leanprover-community.github.io/get_started.html). Then download the file and open it in VS Code.
+
+Be aware that *Lean 4* is not backwards-compatible with *Lean 3* and that the `.lean` files in this repository will not work in *Lean 4*.
+
+**Programme of the *Lean* part of the seminar:**
+
+1. Equalities in *Lean* (a first glance)
+1.
