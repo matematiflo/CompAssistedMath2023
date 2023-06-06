@@ -1,5 +1,5 @@
 
-# **Introduction to Lean**
+# **Formal proofs in Lean 3**
 
 **Author:** Florent Schaffhauser, Uni-Heidelberg, Summer Semester 2023
 
