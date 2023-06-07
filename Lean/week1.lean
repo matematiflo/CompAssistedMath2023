@@ -173,7 +173,7 @@ At the end of the proof, one should get a `goals accomplished` message in the *l
 
 **This will not happen, though, if you do not put a comma before the `end` command**.
 
-The tactic we use here is called `reflexivity` which you can think of as saying that if two terms `a` and `b` have the same definition according to Lean, then the equality `a = b` is true. It can abbreviated to `refl`. -/
+The tactic that we use here is called `reflexivity`, which you can think of as saying that if two terms `a` and `b` have the same definition according to Lean, then the equality `a = b` is true. It can abbreviated to `refl`. -/
 
 def one_plus_one_eq_two : 1 + 1 = 2 := 
 begin
@@ -289,19 +289,19 @@ There were several questions about the result shown by the programme for basic c
 
 For instance, why do we get `41 - 42 = 0` ? Or why is `31 / 10 * 52` not equal to `52 * 31 / 10` ?
 
-The reason at the heart of both phenomena is the same: because the operations corresponding to the familiar notation `-` and `/` is not what we think it is.
+The reason at the heart of both phenomena is the same: because the operations corresponding to the familiar pieces of notation `-` and `/` is not what we think they are.
 
-That being said, the second phenomenon is more complex to understand than the first one, as we shall see. -/
+That being said, the second phenomenon is more complex than the first one, as we shall see. -/
 
 /- The following result is not what we expect. -/
 
 #eval 41 - 42 
 
-/- And indeed Lean considers that `41-42` is of type `ℕ`, while we think it should be `ℤ`. -/
+/- And indeed Lean considers that `41-42` is of type `ℕ`, while we think it should be of type `ℤ`. -/
 
 #check 41 - 42
 
-/- And for natural numbers, the result of the operation `n - m` is, **by definition**, equal to the what we think (namely, the unique `r` in `ℕ` such that `m + r = n`) *if* `n - m ≥ 0`, and to `0` if `n - m < 0`. Again, this is the definition of substraction as an operation on `ℕ`. -/
+/- Now, for natural numbers, the result of the operation `n - m` is, **by definition**, equal to the what we think it is (namely, the unique `r` in `ℕ` such that `m + r = n`) *if* `n - m ≥ 0`, but to `0` if `n - m < 0`. Again, this is the definition of substraction as an operation on `ℕ`. -/
 
 def A : ℕ := 41 - 42
 #check A
@@ -309,13 +309,13 @@ def A : ℕ := 41 - 42
 
 /- Now, in *integers*, the result should be different. Namely, the unique `r` such that `m + r = n` is now allowed to be negative.
 
-We can achieve that by changing *only one parameter* in the previous definition (apart from the name of the term itself). Namely, we change `ℕ` to `ℤ`, which is accessible via`\Z` or `\int` (the type `ℤ` is also called `int`). -/
+We can achieve that by changing *only one parameter* in the previous definition (apart from the name of the term itself). Namely, we change `ℕ` to `ℤ`, which is accessible via `\Z` or `\int` (the type `ℤ` is also denoted `int`). -/
 
 def B : ℤ := 41 - 42
 #check B
 #eval B
 
-/- For the second question, first we check that the two results disgagree, and that both are indeed considered to be *natural numbers* by Lean. -/
+/- For the second question, first we check that the two results disagree, and that both are indeed considered to be *natural numbers* by Lean. -/
 
 #eval 31 / 10 * 52
 #eval 52 * 31 / 10
@@ -323,7 +323,7 @@ def B : ℤ := 41 - 42
 #check 31 / 10 * 52
 #check 52 * 31 / 10
 
-/- Then a first remark is that, by definition, if `p` and `q` are natural numbers, then Lean considers that `p / q` is the natural number (in particular, *not* the rational number) `p / q` defined by the floor function applied to the rational number `p / q` (for instance `31 / 10` is `3` instead of `3.1`, *by definition*).
+/- Then a first remark is that, by definition, if `p` and `q` are natural numbers, then Lean considers that `p / q` is the natural number (in particular, *not* the rational number) defined by the floor function applied to what *we* think the rational number `p / q` is (for instance `31 / 10` is `3` and not `3.1`, *by definition*).
 
 A second remark is that `52 * 31 / 10` is interpreted by Lean as `(52 * 31) / 10`, which is `1612 / 10`, and the latter is equal to `161`, by definition of the operation `/` on `ℕ`. While `31 / 10 * 52 = 3 * 52 = 156`.
 
@@ -341,10 +341,10 @@ With these two remarks, we see that `(31 / 10) * 52` is equal to `52 * (31 / 10)
 
 #eval 31 / (10 * 52)
 
-/- As a final remark, we point out that the command `#print` can only be applied to names that have been defined, not to numbers or strings (it is not the same as outputting to the screen, like in other languages you may know). -/
+/- As a final remark, we point out that the command `#print` cannot be applied to numbers (but strings are OK). In particular, the command `#print` is not the same as outputting the result of a computation to the screen, like in other languages you may know). -/
 
 -- #print 42
+#print "Hello, world!"
 
 def m : ℕ := 42
-
 #print m
