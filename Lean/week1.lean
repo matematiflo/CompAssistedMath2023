@@ -199,7 +199,7 @@ Use the `reflexivity` tactic to prove the results below. -/
 --   sorry,
 -- end
 
-/- ### **Second way of writing the proof: tactic mode revisited** 
+/- ### **Second way of writing the proof: compact tactic mode** 
 
 For short tactic proofs like this, we can dispense with the `begin` ... `end` and replace it with a `by { *name-of-the-tactic* }`.
 

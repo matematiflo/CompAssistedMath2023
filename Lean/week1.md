@@ -229,7 +229,7 @@ Use the `reflexivity` tactic to prove the results below.
 -- end
 ```
 
-### **Second way of writing the proof: tactic mode revisited**
+### **Second way of writing the proof: compact tactic mode**
 
 For short tactic proofs like this, we can dispense with the `begin` ... `end` and replace it with a `by { *name-of-the-tactic* }`.
 
@@ -255,9 +255,9 @@ We test this out below with the `my_brother_and_I_agree` proposition.
 Note that, in this case, Lean does not generates a `goal accomplished` message (this is only in tactic mode). If you use a proof term, the only way to know it worked is via the absence of an error message.
 
 ```lean
-#print my_two_sentences_are_the_same
+-- #print my_two_sentences_are_the_same
 
-def my_two_sentences_are_the_same : my_first_sentence = my_second_sentence := eq.refl my_first_sentence
+-- def my_two_sentences_are_the_same : my_first_sentence = my_second_sentence := eq.refl my_first_sentence
 
 def my_brother_and_I_agree : my_favourite_integer = my_brother_s_favourite_integer := eq.refl my_favourite_integer
 ```
