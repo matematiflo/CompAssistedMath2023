@@ -23,7 +23,7 @@ If `#check t` returns `T`, one says that **`t` is a term of type `T`**. This is 
 #check "Hello, world!"
 #check 42
 
-#check "Hello, ".append( "world!" )
+#check "Hello, ".append("world!")
 #check 41 + 1
 
 /- The data types `string` and `ℕ` are themselves terms of type `Type`. You can obtain the symbol `ℕ` by typing `\nat` or `\N` followed by the space bar. You can also just use `nat` instead of `ℕ`. -/
@@ -201,15 +201,15 @@ Use the `reflexivity` tactic to prove the results below. -/
 
 /- ### **Second way of writing the proof: compact tactic mode** 
 
-For short tactic proofs like this, we can dispense with the `begin` ... `end` and replace it with a `by { *name-of-the-tactic* }`.
+For short tactic proofs like this, we can dispense with the `begin` ... `end` and replace it with a `by {*name-of-the-tactic*}`.
 
 You can play around with the examples below, but do not forget to first comment out the definitions introduced above, because I have used the same name in both cases. -/
 
--- def one_plus_one_eq_two : 1 + 1 = 2 := by { reflexivity }
+-- def one_plus_one_eq_two : 1 + 1 = 2 := by {reflexivity}
 
-def my_two_sentences_are_the_same : my_first_sentence = my_second_sentence := by { reflexivity }
+def my_two_sentences_are_the_same : my_first_sentence = my_second_sentence := by {reflexivity}
 
--- def my_brother_and_I_agree : my_favourite_integer = my_brother_s_favourite_integer := by { reflexivity }
+-- def my_brother_and_I_agree : my_favourite_integer = my_brother_s_favourite_integer := by {reflexivity}
 
 /- ### **Third way of writing the proof: proof terms**
 
@@ -233,19 +233,19 @@ def my_brother_and_I_agree : my_favourite_integer = my_brother_s_favourite_integ
 
 Use a proof term to write a proof of `1 + 1 = 2`. 
 
-Note that `eq.refl ( 1 + 1 )` and ` eq.refl 2` work equally well and check that this is also the case for the definitions of the terms `my_two_sentences_are_the_same` and `my_brother_and_I_agree`.
+Note that `eq.refl (1 + 1)` and ` eq.refl 2` work equally well and check that this is also the case for the definitions of the terms `my_two_sentences_are_the_same` and `my_brother_and_I_agree`.
 
-At this stage, it might be instructive to try out `#check eq.refl 2` and `#check eq.refl ( 1 + 1 )`. Or even `#check eq.refl my_favourite_integer` and `#check eq.refl my_first_sentence`. See below for the corresponding code and a remark on the content of `eq.refl 2`.
+At this stage, it might be instructive to try out `#check eq.refl 2` and `#check eq.refl (1 + 1)`. Or even `#check eq.refl my_favourite_integer` and `#check eq.refl my_first_sentence`. See below for the corresponding code and a remark on the content of `eq.refl 2`.
 
 Try also `#check eq.refl` and `#check @eq.refl`. Using `@` should produce something better-looking. -/
 
-def one_plus_one_eq_two_again : 1 + 1 = 2 := eq.refl ( 1 + 1 )
+def one_plus_one_eq_two_again : 1 + 1 = 2 := eq.refl (1 + 1)
 
 /- The following command `#check eq.refl 2` returns `eq.refl 2 : 2 = 2`, which means that `eq.refl 2` is a term of type `2 = 2`. In other words, **`eq.refl 2` is a proof of the Proposition `2 = 2`.** This is crucial in understanding how *Lean* works.-/
 
 #check eq.refl 2
 
--- #check eq.refl ( 1 + 1 )
+-- #check eq.refl (1 + 1)
 -- #check eq.refl my_favourite_integer
 -- #check eq.refl my_first_sentence
 
@@ -256,7 +256,7 @@ def one_plus_one_eq_two_again : 1 + 1 = 2 := eq.refl ( 1 + 1 )
 
 So we now have two terms of type `1 + 1 = 2`, namely `one_plus_one_eq_two` and `one_plus_one_eq_two_again`. We will now prove that they are equal, using the only tactic we have for now! -/
 
-def the_two_proofs_we_gave_are_equal : one_plus_one_eq_two = one_plus_one_eq_two_again := by { refl }
+def the_two_proofs_we_gave_are_equal : one_plus_one_eq_two = one_plus_one_eq_two_again := by {refl}
 
 /- To conclude this session, let us see an example of a case when we do not get what we might expect at all. If we write to write fractions naively, we see that the types of those terms is not what we think it is. -/
 
@@ -275,10 +275,76 @@ def the_two_proofs_we_gave_are_equal : one_plus_one_eq_two = one_plus_one_eq_two
 #eval 42 / 15
 #eval 2.8
 
-def fun_fact_1 : 42 / 15 = 2 := eq.refl ( 42 / 15 ) 
-def fun_fact_2 : 2.8 = 2 := eq.refl ( 42 / 15 ) 
-def fun_fact_3 : 2.8 = 2.7 := eq.refl ( 42 /15 ) 
+def fun_fact_1 : 42 / 15 = 2 := eq.refl (42 / 15) 
+def fun_fact_2 : 2.8 = 2 := eq.refl (42 / 15) 
+def fun_fact_3 : 2.8 = 2.7 := eq.refl (42 /15) 
 
 /- As a final remark, we point out that, in Lean, it is possible to introduce anonymous definitions, via the `example` command. This can be useful if it is a definition of a term that we do not plan to use again after introducing it and we do not want to waste a name on it. -/
 
-example : 2.8 = 2.7 := by { refl }
+example : 2.8 = 2.7 := by {refl}
+
+/- Answers to some of the questions asked during the session
+
+There were several questions about the result shown by the programme for basic computations in Lean.
+
+For instance, why do we get `41 - 42 = 0` ? Or why is `31 / 10 * 52` not equal to `52 * 31 / 10` ?
+
+The reason at the heart of both phenomena is the same: because the operations corresponding to the familiar notation `-` and `/` is not what we think it is.
+
+That being said, the second phenomenon is more complex to understand than the first one, as we shall see. -/
+
+/- The following result is not what we expect. -/
+
+#eval 41 - 42 
+
+/- And indeed Lean considers that `41-42` is of type `ℕ`, while we think it should be `ℤ`. -/
+
+#check 41 - 42
+
+/- And for natural numbers, the result of the operation `n - m` is, **by definition**, equal to the what we think (namely, the unique `r` in `ℕ` such that `m + r = n`) *if* `n - m ≥ 0`, and to `0` if `n - m < 0`. Again, this is the definition of substraction as an operation on `ℕ`. -/
+
+def A : ℕ := 41 - 42
+#check A
+#eval A
+
+/- Now, in *integers*, the result should be different. Namely, the unique `r` such that `m + r = n` is now allowed to be negative.
+
+We can achieve that by changing *only one parameter* in the previous definition (apart from the name of the term itself). Namely, we change `ℕ` to `ℤ`, which is accessible via`\Z` or `\int` (the type `ℤ` is also called `int`). -/
+
+def B : ℤ := 41 - 42
+#check B
+#eval B
+
+/- For the second question, first we check that the two results disgagree, and that both are indeed considered to be *natural numbers* by Lean. -/
+
+#eval 31 / 10 * 52
+#eval 52 * 31 / 10
+
+#check 31 / 10 * 52
+#check 52 * 31 / 10
+
+/- Then a first remark is that, by definition, if `p` and `q` are natural numbers, then Lean considers that `p / q` is the natural number (in particular, *not* the rational number) `p / q` defined by the floor function applied to the rational number `p / q` (for instance `31 / 10` is `3` instead of `3.1`, *by definition*).
+
+A second remark is that `52 * 31 / 10` is interpreted by Lean as `(52 * 31) / 10`, which is `1612 / 10`, and the latter is equal to `161`, by definition of the operation `/` on `ℕ`. While `31 / 10 * 52 = 3 * 52 = 156`.
+
+With these two remarks, we see that `(31 / 10) * 52` is equal to `52 * (31 / 10)` but *not* to `(52 * 31) / 10`. And quite obviously, perhaps, `31 / (10 * 52)` is again different. -/
+
+#eval 31 / 10
+#eval (31 / 10) * 52
+#eval 31 / 10 * 52
+
+#eval 52 * (31 / 10)
+
+#eval 52 * 31 
+#eval (52 * 31) / 10
+#eval 52 * 31 / 10
+
+#eval 31 / (10 * 52)
+
+/- As a final remark, we point out that the command `#print` can only be applied to names that have been defined, not to numbers or strings (it is not the same as outputting to the screen, like in other languages you may know). -/
+
+-- #print 42
+
+def m : ℕ := 42
+
+#print m

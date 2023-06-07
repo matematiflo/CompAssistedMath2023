@@ -328,4 +328,84 @@ As a final remark, we point out that, in Lean, it is possible to introduce anony
 example : 2.8 = 2.7 := by { refl }
 ```
 
+# Answers to some of the questions asked during the session
+
+There were several questions about the result shown by the programme for basic computations in Lean.
+
+For instance, why do we get `41 - 42 = 0` ? Or why is `31 / 10 * 52` not equal to `52 * 31 / 10` ?
+
+The reason at the heart of both phenomena is the same: because the operations corresponding to the familiar notation `-` and `/` is not what we think it is.
+
+That being said, the second phenomenon is more complex to understand than the first one, as we shall see.
+
+The following result is not what we expect.
+
+```lean
+#eval 41 - 42
+```
+
+And indeed Lean considers that `41-42` is of type `ℕ`, while we think it should be `ℤ`.
+
+```lean
+#check 41 - 42
+````
+
+And for natural numbers, the result of the operation `n - m` is, **by definition**, equal to the what we think (namely, the unique `r` in `ℕ` such that `m + r = n`) *if* `n - m ≥ 0`, and to `0` if `n - m < 0`. Again, this is the definition of substraction as an operation on `ℕ`.
+
+```lean
+def A : ℕ := 41 - 42
+#check A
+#eval A
+```
+
+Now, in *integers*, the result should be different. Namely, the unique `r` such that `m + r = n` is now allowed to be negative.
+
+We can achieve that by changing *only one parameter* in the previous definition (apart from the name of the term itself). Namely, we change `ℕ` to `ℤ`, which is accessible via`\Z` or `\int` (the type `ℤ` is also called `int`). -/
+
+```lean
+def B : ℤ := 41 - 42
+#check B
+#eval B
+```
+
+For the second question, first we check that the two results disgagree, and that both are indeed considered to be *natural numbers* by Lean.
+
+```lean
+#eval 31 / 10 * 52
+#eval 52 * 31 / 10
+
+#check 31 / 10 * 52
+#check 52 * 31 / 10
+```
+
+Then a first remark is that, by definition, if `p` and `q` are natural numbers, then Lean considers that `p / q` is the natural number (in particular, *not* the rational number) `p / q` defined by the floor function applied to the rational number `p / q` (for instance `31 / 10` is `3` instead of `3.1`, *by definition*).
+
+A second remark is that `52 * 31 / 10` is interpreted by Lean as `(52 * 31) / 10`, which is `1612 / 10`, and the latter is equal to `161`, by definition of the operation `/` on `ℕ`. While `31 / 10 * 52 = 3 * 52 = 156`.
+
+With these two remarks, we see that `(31 / 10) * 52` is equal to `52 * (31 / 10)` but *not* to `(52 * 31) / 10`. And quite obviously, perhaps, `31 / (10 * 52)` is again different.
+
+```lean
+#eval 31 / 10
+#eval (31 / 10) * 52
+#eval 31 / 10 * 52
+
+#eval 52 * (31 / 10)
+
+#eval 52 * 31 
+#eval (52 * 31) / 10
+#eval 52 * 31 / 10
+
+#eval 31 / (10 * 52)
+```
+
+As a final remark, we point out that the command `#print` can only be applied to names that have been defined, not to numbers or strings (it is not the same as outputting to the screen, like in other languages you may know).
+
+```lean
+-- #print 42
+
+def m : ℕ := 42
+
+#print m
+```
+
 ---
