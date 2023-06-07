@@ -257,7 +257,7 @@ Note that, in this case, Lean generates no `goal accomplished` message (this is 
 ```lean
 #print my_two_sentences_are_the_same
 
--- def my_two_sentences_are_the_same : my_first_sentence = my_second_sentence := eq.refl my_first_sentence
+def my_two_sentences_are_the_same : my_first_sentence = my_second_sentence := eq.refl my_first_sentence
 
 def my_brother_and_I_agree : my_favourite_integer = my_brother_s_favourite_integer := eq.refl my_favourite_integer
 ```
