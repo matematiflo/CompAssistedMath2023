@@ -403,7 +403,11 @@ As a final remark, we point out that the command `#print` cannot be applied to n
 ```lean
 -- #print 42
 #print "Hello, world!"
+````
 
+Below, we define `m` to be equal to `42`. So `#print m` returns the definition of the term `m`, namely `def m : ℕ := 42`, which is what we had entered.
+
+```lean
 def m : ℕ := 42
 #print m
 ```

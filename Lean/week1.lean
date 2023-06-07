@@ -346,5 +346,7 @@ With these two remarks, we see that `(31 / 10) * 52` is equal to `52 * (31 / 10)
 -- #print 42
 #print "Hello, world!"
 
+/- Below, we define `m` to be equal to `42`. So `#print m` returns the definition of the term `m`, namely `def m : ℕ := 42`, which is what we had entered. -/
+
 def m : ℕ := 42
 #print m
