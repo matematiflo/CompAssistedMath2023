@@ -1,5 +1,5 @@
 
-/- # *Modus ponens* -/
+/- # ***Modus ponens*** -/
 
 def MP {P Q : Prop} (hP : P) (hPQ : P → Q) : Q :=
 begin
