@@ -26,14 +26,16 @@ def In_our_context_Q_is_true : Q := MP hP hPQ
 #check @MP P Q hP hPQ
 #check MP hP hPQ
 
-/- The tactic proof that Q is true in our context actually repeats the steps of the def of MP. 
+/- The tactic proof that Q is true in our context uses the `exact` tactic.
 
-Note that in order to use the variable hP and hQ in tactic mode, we need to include them in the local context as well.-/
+Note that here, in order to use the variables hP and hQ *in tactic mode*, we need to include them in the local context.-/
 
-include hP hPQ
-
-def In_our_context_Q_is_true_bis : Q :=
+def In_our_context_Q_is_true_bis (hP : P) (hPQ : P → Q) : Q :=
 begin
-    apply hPQ,
-    exact hP,
+    exact MP hP hPQ,
 end
+
+/- At the end of the day, the two proof terms are indeed identical -/
+
+#print In_our_context_Q_is_true
+#print In_our_context_Q_is_true_bis
