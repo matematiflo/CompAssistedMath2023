@@ -60,7 +60,7 @@ begin
   exact MP hP hPQ,
 end
 
-/- At the end of the day, the two proof terms are in fact identical. -/
+/- Note that the proof terms of `proof_of_Q` and `proof_of_Q_bis` are identical. -/
 
 -- #print proof_of_Q
 -- #print proof_of_Q_bis
