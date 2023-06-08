@@ -11,12 +11,12 @@ It was created and first implemented by **Leonardo de Moura** at Microsoft Resea
 
 The current version is Lean 4, dating back to 2021. It is not backwards-compatible wih **Lean 3**, which is the version that we use for the purposes of this seminar.
 
-> **Goals today**
->
-> * Learn to read the syntax `def t : T := sorry`.
-> * Learn to think about *Propositions as types* and *terms as > proofs*.
-> * Write simple equality proofs using the `reflexivity` tactic (or `refl`).
-> * See a first example of a function and of a proof that uses the `exact` tactic.
+## **Goals today**
+
+* Learn to read the syntax `def t : T := sorry`.
+* Learn to think about *Propositions as types* and *terms as proofs*.
+* Write simple equality proofs using the `reflexivity` tactic (or `refl`).
+* See a first example of a function and of a proof that uses the `exact` tactic.
 
 ## **Types and terms**
 
@@ -31,7 +31,7 @@ If `#check t` returns `T`, one says that **`t` is a term of type `T`**. This is 
 #check "Hello, world!"
 #check 42
 
-#check "Hello, ".append( "world!" )
+#check "Hello, ".append("world!")
 #check 41 + 1
 ```
 
@@ -238,16 +238,16 @@ Use the `reflexivity` tactic to prove the results below.
 
 ### **Second way of writing the proof: compact tactic mode**
 
-For short tactic proofs like this, we can dispense with the `begin` ... `end` and replace it with a `by { *name-of-the-tactic* }`.
+For short tactic proofs like this, we can dispense with the `begin` ... `end` and replace it with a `by {*name-of-the-tactic*}`.
 
 You can play around with the examples below, but do not forget to first comment out the definitions introduced above, because I have used the same name in both cases.
 
 ```lean
--- def one_plus_one_eq_two : 1 + 1 = 2 := by { reflexivity }
+-- def one_plus_one_eq_two : 1 + 1 = 2 := by {reflexivity}
 
-def my_two_sentences_are_the_same : my_first_sentence = my_second_sentence := by { reflexivity }
+def my_two_sentences_are_the_same : my_first_sentence = my_second_sentence := by {reflexivity}
 
--- def my_brother_and_I_agree : my_favourite_integer = my_brother_s_favourite_integer := by { reflexivity }
+-- def my_brother_and_I_agree : my_favourite_integer = my_brother_s_favourite_integer := by {reflexivity}
 ```
 
 ### **Third way of writing the proof: term mode**
@@ -273,9 +273,9 @@ def my_brother_and_I_agree : my_favourite_integer = my_brother_s_favourite_integ
 
 Use term mode to write a proof of `1 + 1 = 2`.
 
-Note that `eq.refl ( 1 + 1 )` and `eq.refl 2` work equally well and check that this is also the case for the definitions of the terms `my_two_sentences_are_the_same` and `my_brother_and_I_agree`.
+Note that `eq.refl (1 + 1)` and `eq.refl 2` work equally well and check that this is also the case for the definitions of the terms `my_two_sentences_are_the_same` and `my_brother_and_I_agree`.
 
-At this stage, it might be instructive to try out `#check eq.refl 2` and `#check eq.refl ( 1 + 1 )`. Or even `#check eq.refl my_favourite_integer` and `#check eq.refl my_first_sentence`. See below for the corresponding code and a remark on the content of `eq.refl 2`.
+At this stage, it might be instructive to try out `#check eq.refl 2` and `#check eq.refl (1 + 1)`. Or even `#check eq.refl my_favourite_integer` and `#check eq.refl my_first_sentence`. See below for the corresponding code and a remark on the content of `eq.refl 2`.
 
 Try also `#check eq.refl` and `#check @eq.refl`. Using `@` should produce something better-looking.
 
@@ -283,12 +283,16 @@ Try also `#check eq.refl` and `#check @eq.refl`. Using `@` should produce someth
 def one_plus_one_eq_two_again : 1 + 1 = 2 := eq.refl (1 + 1)
 ```
 
-The following command `#check eq.refl 2` returns `eq.refl 2 : 2 = 2`, which means that `eq.refl 2` is a term of type `2 = 2`. In other words, **`eq.refl 2` is a proof of the Proposition `2 = 2`.** This is crucial in understanding how *Lean* works.
+The following command `#check eq.refl 2` returns `eq.refl 2 : 2 = 2`, which means that `eq.refl 2` is a term of type `2 = 2`. In other words:
+
+> **`eq.refl 2` is a proof of the Proposition `2 = 2`.**
+
+This is crucial in understanding how *Lean* works.
 
 ```lean
 #check eq.refl 2
 
--- #check eq.refl ( 1 + 1 )
+-- #check eq.refl (1 + 1)
 -- #check eq.refl my_favourite_integer
 -- #check eq.refl my_first_sentence
 
@@ -301,7 +305,7 @@ In Exercise 2, the term which is being defined has been given a different name: 
 So we now have two terms of type `1 + 1 = 2`, namely `one_plus_one_eq_two` and `one_plus_one_eq_two_again`. We will now prove that they are equal, using the only tactic we have for now!
 
 ```lean
-def the_two_proofs_we_gave_are_equal : one_plus_one_eq_two = one_plus_one_eq_two_again := by { refl }
+def the_two_proofs_we_gave_are_equal : one_plus_one_eq_two = one_plus_one_eq_two_again := by {refl}
 ```
 
 To conclude this session, let us see an example of a case when we do not get what we might expect at all. If we write to write fractions naively, we see that the types of those terms is not what we think it is.
@@ -324,15 +328,15 @@ The above fact comes from the *definition* of the operation `/`, which is not wh
 #eval 42 / 15
 #eval 2.8
 
-def fun_fact_1 : 42 / 15 = 2 := eq.refl ( 42 / 15 ) 
-def fun_fact_2 : 2.8 = 2 := eq.refl ( 42 / 15 ) 
-def fun_fact_3 : 2.8 = 2.7 := eq.refl ( 42 /15 ) 
+def fun_fact_1 : 42 / 15 = 2 := eq.refl (42 / 15) 
+def fun_fact_2 : 2.8 = 2 := eq.refl (42 / 15) 
+def fun_fact_3 : 2.8 = 2.7 := eq.refl (42 /15) 
 ```
 
 As a final remark, we point out that, in Lean, it is possible to introduce anonymous definitions, via the `example` command. This can be useful if it is a definition of a term that we do not plan to use again after introducing it and we do not want to waste a name on it.
 
 ```lean
-example : 2.8 = 2.7 := by { refl }
+example : 2.8 = 2.7 := by {refl}
 ```
 
 ### **Exercise 3**
@@ -413,14 +417,14 @@ As a final remark, we point out that the command `#print` cannot be applied to n
 
 ```lean
 -- #print 42
-#print "Hello, world!"
+-- #print "Hello, world!"
 ````
 
-Below, we define `m` to be equal to `42`. So `#print m` returns the definition of the term `m`, namely `def m : ℕ := 42`, which is what we had entered.
+Below, we define `m` to be equal to `42`. So `#print m` returns the *definition* of the term `m`, namely `def m : ℕ := 42`, which is what we had entered.
 
 ```lean
 def m : ℕ := 42
-#print m
+-- #print m
 ```
 
 ---

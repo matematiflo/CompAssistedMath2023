@@ -11,12 +11,12 @@ It was created and first implemented by **Leonardo de Moura** at Microsoft Resea
 
 The current version is Lean 4, dating back to 2021. It is not backwards-compatible wih **Lean 3**, which is the version that we use for the purposes of this seminar. -/
 
-/- > **Goals today**
->
-> * Learn to read the syntax `def t : T := sorry`.
-> * Learn to think about *Propositions as types* and *terms as > proofs*.
-> * Write simple equality proofs using the `reflexivity` tactic (or `refl`).
-> * See a first example of a function and of a proof that uses the `exact` tactic. -/
+/- ## **Goals today**
+
+* Learn to read the syntax `def t : T := sorry`.
+* Learn to think about *Propositions as types* and *terms as proofs*.
+* Write simple equality proofs using the `reflexivity` tactic (or `refl`).
+* See a first example of a function and of a proof that uses the `exact` tactic. -/
 
 /- ## **Types and terms** -/
 
@@ -248,7 +248,11 @@ Try also `#check eq.refl` and `#check @eq.refl`. Using `@` should produce someth
 
 def one_plus_one_eq_two_again : 1 + 1 = 2 := eq.refl (1 + 1)
 
-/- The following command `#check eq.refl 2` returns `eq.refl 2 : 2 = 2`, which means that `eq.refl 2` is a term of type `2 = 2`. In other words, **`eq.refl 2` is a proof of the Proposition `2 = 2`.** This is crucial in understanding how *Lean* works.-/
+/- The following command `#check eq.refl 2` returns `eq.refl 2 : 2 = 2`, which means that `eq.refl 2` is a term of type `2 = 2`. In other words, 
+
+> **`eq.refl 2` is a proof of the Proposition `2 = 2`.** 
+
+This is crucial in understanding how *Lean* works.-/
 
 #check eq.refl 2
 
@@ -355,9 +359,9 @@ With these two remarks, we see that `(31 / 10) * 52` is equal to `52 * (31 / 10)
 /- As a final remark, we point out that the command `#print` cannot be applied to numbers (but strings are OK). In particular, the command `#print` is not the same as outputting the result of a computation to the screen, like in other languages you may know). -/
 
 -- #print 42
-#print "Hello, world!"
+-- #print "Hello, world!"
 
-/- Below, we define `m` to be equal to `42`. So `#print m` returns the definition of the term `m`, namely `def m : ℕ := 42`, which is what we had entered. -/
+/- Below, we define `m` to be equal to `42`. So `#print m` returns the *definition* of the term `m`, namely `def m : ℕ := 42`, which is what we had entered. -/
 
 def m : ℕ := 42
-#print m
+-- #print m
