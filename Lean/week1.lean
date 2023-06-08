@@ -330,6 +330,10 @@ def B : ℤ := 41 - 42
 #check B
 #eval B
 
+/- Alternately, we can just enter the following. -/
+
+#eval (41 - 42 : ℤ)
+
 /- For the second question, first we check that the two results disagree, and that both are indeed considered to be *natural numbers* by Lean. -/
 
 #eval 31 / 10 * 52
@@ -355,6 +359,16 @@ With these two remarks, we see that `(31 / 10) * 52` is equal to `52 * (31 / 10)
 #eval 52 * 31 / 10
 
 #eval 31 / (10 * 52)
+
+/- If you include the line
+
+-- import data.rat.basic 
+
+*at the beginning of this file*, then the following will also be computed in `ℚ`. -/
+
+-- #eval (31 / 10 * 52 : ℚ)
+
+/- Without importing the library data.rat.basic, it does not work (the rational numbers are defined in a library which is not loaded by default). -/
 
 /- As a final remark, we point out that the command `#print` cannot be applied to numbers (but strings are OK). In particular, the command `#print` is not the same as outputting the result of a computation to the screen, like in other languages you may know). -/
 
