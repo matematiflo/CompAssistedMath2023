@@ -211,7 +211,7 @@ def my_two_sentences_are_the_same : my_first_sentence = my_second_sentence := by
 
 -- def my_brother_and_I_agree : my_favourite_integer = my_brother_s_favourite_integer := by {reflexivity}
 
-/- ### **Third way of writing the proof: proof terms**
+/- ### **Third way of writing the proof: term mode**
 
 A tactic proof is mostly useful when we reach a certain level of complexity, which requires that said proof be carried out in various steps (tactic mode is also the way proofs are usually constructed in the daily practice of mathematics).
 
@@ -231,7 +231,7 @@ def my_brother_and_I_agree : my_favourite_integer = my_brother_s_favourite_integ
 
 /- ### **Exercise** 
 
-Use a proof term to write a proof of `1 + 1 = 2`. 
+Use term mode to write a proof of `1 + 1 = 2`. 
 
 Note that `eq.refl (1 + 1)` and ` eq.refl 2` work equally well and check that this is also the case for the definitions of the terms `my_two_sentences_are_the_same` and `my_brother_and_I_agree`.
 

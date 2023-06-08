@@ -264,7 +264,7 @@ def my_brother_and_I_agree : my_favourite_integer = my_brother_s_favourite_integ
 
 ### **Exercise 2**
 
-Use a proof term to write a proof of `1 + 1 = 2`.
+Use term mode to write a proof of `1 + 1 = 2`.
 
 Note that `eq.refl ( 1 + 1 )` and `eq.refl 2` work equally well and check that this is also the case for the definitions of the terms `my_two_sentences_are_the_same` and `my_brother_and_I_agree`.
 
