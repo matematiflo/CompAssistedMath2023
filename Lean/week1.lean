@@ -11,7 +11,14 @@ It was created and first implemented by **Leonardo de Moura** at Microsoft Resea
 
 The current version is Lean 4, dating back to 2021. It is not backwards-compatible wih **Lean 3**, which is the version that we use for the purposes of this seminar. -/
 
-/- ## Types and terms -/
+/- > **Goals today**
+>
+> * Learn to read the syntax `def t : T := sorry`.
+> * Learn to think about *Propositions as types* and *terms as > proofs*.
+> * Write simple equality proofs using the `reflexivity` tactic (or `refl`).
+> * See a first example of a function and of a proof that uses the `exact` tactic. -/
+
+/- ## **Types and terms** -/
 
 /- In Lean, we have access to certain data types, which are part of the language. 
 
@@ -34,8 +41,8 @@ If `#check t` returns `T`, one says that **`t` is a term of type `T`**. This is 
 
 /- Not all data types are terms of type `Type`. Some are more complex than that, for instance the type `list`. -/
 
-#check [ "Hello, ", "world!" ]
-#check [ 1, 2, 3 ]
+#check ["Hello, ", "world!"]
+#check [1, 2, 3]
 
 -- We will see later what the following result means.
 
@@ -50,7 +57,7 @@ If `#check t` returns `T`, one says that **`t` is a term of type `T`**. This is 
 
 Uncomment the following commands to see that indeed Lean does not accept them. -/
 
--- #check [ 1, "a" ]
+-- #check [1, "a"]
 -- #check list list 
 -- #check list list nat
 
@@ -185,7 +192,7 @@ end
 --   refl,
 -- end
 
-/- ### **Exercise** 
+/- ### **Exercise 1** 
 
 Use the `reflexivity` tactic to prove the results below. -/
 
@@ -229,7 +236,7 @@ Note that, in this case, Lean does not generates a `goal accomplished` message (
 
 def my_brother_and_I_agree : my_favourite_integer = my_brother_s_favourite_integer := eq.refl my_favourite_integer
 
-/- ### **Exercise** 
+/- ### **Exercise 2** 
 
 Use term mode to write a proof of `1 + 1 = 2`. 
 
@@ -283,7 +290,11 @@ def fun_fact_3 : 2.8 = 2.7 := eq.refl (42 /15)
 
 example : 2.8 = 2.7 := by {refl}
 
-/- Answers to some of the questions asked during the session
+/- ### **Exercise 3**
+
+Go to the [*modus ponens* file](https://github.com/matematiflo/Comp_assisted_math/blob/2023_SoSe/Lean/Practice_folder/modus_ponens.lean) and learn about the `exact` tactic.-/
+
+/- ## Answers to some of the questions asked during the session
 
 There were several questions about the result shown by the programme for basic computations in Lean.
 

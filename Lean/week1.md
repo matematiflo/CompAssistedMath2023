@@ -11,7 +11,14 @@ It was created and first implemented by **Leonardo de Moura** at Microsoft Resea
 
 The current version is Lean 4, dating back to 2021. It is not backwards-compatible wih **Lean 3**, which is the version that we use for the purposes of this seminar.
 
-## Types and terms
+> **Goals today**
+>
+> * Learn to read the syntax `def t : T := sorry`.
+> * Learn to think about *Propositions as types* and *terms as > proofs*.
+> * Write simple equality proofs using the `reflexivity` tactic (or `refl`).
+> * See a first example of a function and of a proof that uses the `exact` tactic.
+
+## **Types and terms**
 
 In Lean, we have access to certain data types, which are part of the language.
 
@@ -39,8 +46,8 @@ The data types `string` and `ℕ` are themselves terms of type `Type`. You can o
 Not all data types are terms of type `Type`. Some are more complex than that, for instance the type `list`.
 
 ```lean
-#check [ "Hello, ", "world!" ]
-#check [ 1, 2, 3 ]
+#check ["Hello, ", "world!"]
+#check [1, 2, 3]
 
 -- We will see later what the following result means.
 
@@ -59,7 +66,7 @@ Note that we cannot have a list containing terms of different types. Nor can we 
 Uncomment the following commands to see that indeed Lean does not accept them.
 
 ```lean
--- #check [ 1, "a" ]
+-- #check [1, "a"]
 -- #check list list 
 -- #check list list nat
 ```
@@ -328,7 +335,11 @@ As a final remark, we point out that, in Lean, it is possible to introduce anony
 example : 2.8 = 2.7 := by { refl }
 ```
 
-# Answers to some of the questions asked during the session
+### **Exercise 3**
+
+Go to the [*modus ponens* file](https://github.com/matematiflo/Comp_assisted_math/blob/2023_SoSe/Lean/Practice_folder/modus_ponens.lean) and learn about the `exact` tactic.
+
+## Answers to some of the questions asked during the session
 
 There were several questions about the result shown by the programme for basic computations in Lean.
 
