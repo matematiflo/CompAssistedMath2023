@@ -1,7 +1,7 @@
 
 # ***Modus ponens***
 
-Let us use tactic mode to write a proof of the rule of deductive reasonong known as *modus ponens*, which says that if we have a proof of proposition `P` and a proof of the implication `P → Q`, then we have a proof of the proposition `Q`.
+Let us use tactic mode to write a proof of the rule of deductive reasoning known as *modus ponens*, which says that if we have a proof of proposition `P` and a proof of the implication `P → Q`, then we have a proof of the proposition `Q`.
 
 ```lean
 def MP {P Q : Prop} (hP : P) (hPQ : P → Q) : Q :=
