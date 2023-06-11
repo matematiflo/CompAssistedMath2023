@@ -15,7 +15,7 @@ The proof we give can be understood as follows. First, let us make it clear that
 
 Since by assumption we have a proof of the implication `P → Q`, it suffices to prove `P`. This is what the `apply` tactic enables us to do. More precisely, the term `hPQ`, being of type `P → Q`, is a function from `P` to `Q`, so it sends a term of type `P`(a.k.a. a proof a `P`) to a term of type `Q`, i.e. a proof of `Q`.
 
-Now, after the `apply` tactic, the goal is changed to `P`. And since, again by assumption, we have a proof of `P`, we can close the goal using the `exact` tactic. Alternately, we can write the proof using just the `exact` tactic, because `hPQ hP` is the result of applying the function `hPQ : P → Q` to the term `hP : P`, thus producing a term of type `Q`.
+Now, after the `apply` tactic, the goal is changed to `P`. And since, again by assumption, we have a proof of `P`, we can close the goal using the `exact` tactic. Alternately, we can write the proof using just the `exact` tactic, because `hPQ hP` is the result of applying the function `hPQ : P → Q` to the term `hP : P`, so it is a term of type `Q`.
 
 ```lean
 def MP_bis {P Q : Prop} (hP : P) (hPQ : P → Q) : Q :=
@@ -34,7 +34,7 @@ In this example, we see:
 
 * A concise term mode definition.
 * A tactic mode definition that just adds the word `exact` in front of the term mode definition.
-* A longer tactic mode definition that uses the `apply` tactic as well to change the goal before closing it.
+* A longer tactic mode definition that uses the `apply` tactic to change the goal before closing it.
 
 The longer our proofs become, the more necessary it will be to use the third approach (tactic mode). In that approach, *we work on the goal to reduce it to the assumptions, and we close the reduced goal with the `exact` tactic.
 
