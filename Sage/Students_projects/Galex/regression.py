@@ -20,21 +20,18 @@ def regression(points, dim:int=2):
 
 def trig_regression_ez(points):
     # f(x) = a + b * sin(x)
-    xs = points[:,0]
-    ys = points[:,1]
-    AT = matrix([[1, sin(x)] for x in xs])
-    A = AT.transpose()
+    xs, ys = points
+    A = matrix([[1, sin(x)] for x in xs])
+    AT = A.transpose()
     ATA = AT * A
     a, b = (ATA.inverse()) * AT * vector(ys)
     return lambda x: a + b * sin(x)
 
-def trig_regression_med(points):
+def trig_regression_nonlinear(points, w, o):
     # f(x) = a * sin(wx) + b * cos(ox)
-    w, o = 1.2, -2.3
-    xs = [point[0] for point in points]
-    ys = [point[1] for point in points]
-    AT = matrix([[sin(w * x), cos(o * x)] for x in xs])
-    A = AT.transpose()
+    xs, ys = points
+    A = matrix([[sin(w * x), cos(o * x)] for x in xs])
+    AT = A.transpose()
     ATA = AT * A
     a, b = (ATA.inverse()) * AT * vector(ys)
-    return lambda x: a + b * sin(x)
+    return lambda x: a * sin(w*x) + b * cos(o*x)
