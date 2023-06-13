@@ -21,33 +21,48 @@ class Plotter:
         self.ERRMAX = errmax if errmax is not None else [1]
         self.XMIN, self.XMAX = xmin, xmax
         self.YMIN, self.YMAX = ymin, ymax
-        self.axes = plt.axes()
-        self.axes.set_xlim((self.XMIN, self.XMAX))
-        self.axes.set_ylim((self.YMIN, self.YMAX))
+        self.entities = []
 
     def plot_pts(self, xs, ys, *args, **kwargs):
-        self.axes.plot(xs, ys, *args, **kwargs)
+        self.entities.append(('points', xs, ys, args, kwargs))
 
     def plot_func(self, f, *args, **kwargs):
-        xs = np.linspace(self.XMIN, self.XMAX, 1000)
-        self.axes.plot(xs, f(xs), *args, **kwargs)
-
+        self.entities.append(('func', f, args, kwargs))
+        
     def get_datapts(self, func, c:int, n:int, seed=None):
         '''Returns an array with c columns and n rows, i.e. c points of dimension n.'''
         if isinstance(seed, int):
             set_seed(seed)
-        datamatrix = np.ndarray((n+1,c))
+        datamatrix = np.ndarray((n,c))
         datamatrix[0] = np.linspace(self.XMIN, self.XMAX, c)
         datamatrix[1] = func(datamatrix[0])
-        ynoise = np.fromiter((uniform(self.ERRMIN[i], self.ERRMAX[i]) for i in range(n) for _ in range (c)), float, count=c*n).reshape((n,c))
+        ynoise = np.fromiter((uniform(self.ERRMIN[i], self.ERRMAX[i]) for i in range(n-1) for _ in range (c)), float, count=c*(n-1)).reshape((n-1,c))
         datamatrix[1:,] += ynoise
         return datamatrix
 
     def measure_error(self, func, pts):
-        plt.text(0.1, 4.9, f"Regression Error: " + str(sum((pts[1] - func(pts[0]))**2)), color=(1,0,0))
+        xs, ys = pts
+        func_ys = func(xs)
+        error_data = ('text', 0.1, 4.9 , f"Regression Error: {sum((ys - func_ys)**2)}", {'c':(1, .3, 0)})
+        self.entities.append(error_data)
 
     def show(self):
+        for entity in self.entities:
+            match entity[0]:
+                case 'points':
+                    xvals, yvals, args, kwargs = entity[1:]
+                    plt.plot(xvals, yvals, *args, **kwargs)
+                case 'func':
+                    func, args, kwargs = entity[1:]
+                    xvals = np.linspace(self.XMIN, self.XMAX, 300)
+                    plt.plot(xvals, func(xvals), *args, **kwargs)
+                case 'text':
+                    plt.text(*entity[1:])
+                case _:
+                    raise ValueError("Unsupported type for drawing")
+        plt.xlim(self.XMIN, self.XMAX)
+        plt.ylim(self.YMIN, self.YMAX)
         plt.show()
 
-    def save(self, path):
-        plt.savefig(path)
+    def reset(self):
+        self.entities.clear()

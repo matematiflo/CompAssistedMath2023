@@ -1,8 +1,7 @@
 from numpy import vstack
 from scipy.interpolate import lagrange
 from util import Plotter
-from regression import regression, trig_regression_ez, trig_regression_med
-
+from regression import regression, trig_regression_ez, trig_regression_nonlinear
 POINT_COUNT = 20
 REGRESSAND_DEGREE = 3
 assert POINT_COUNT >= REGRESSAND_DEGREE
@@ -18,7 +17,7 @@ DRAW_LAGRANGE = False
 def main():
     plotter = Plotter()
     stem_func = lambda x: 0.5 * x**2
-    pts = plotter.get_datapts(stem_func, POINT_COUNT, 1, seed=0)
+    pts = plotter.get_datapts(stem_func, POINT_COUNT, 2, seed=0)
     if DRAW_PTS:
         plotter.plot_pts(pts[0], pts[1], 'o', color=(1, 0, 1))
     if DRAW_STEM:
@@ -26,11 +25,11 @@ def main():
     if DRAW_REGRESSION:
         plotter.plot_func(regression(pts, REGRESSAND_DEGREE), color=(0,1,0))
     if DRAW_LAGRANGE:
-        plotter.plot_func(lagrange(pts[0], pts[1]), color = (1,0,0))
+        plotter.plot_func(lagrange(*pts), color = (1,0,0))
     if DRAW_TRIG_EZ:
         plotter.plot_func(trig_regression_ez(pts), color = (1,0,0))
     if DRAW_TRIG_MED:
-        plotter.plot_func(trig_regression_med(pts), color = (1,0,0))
+        plotter.plot_func(trig_regression_nonlinear(pts, 2, 3), color = (1,0,0))
     if DRAW_ERRORS:
         xx = vstack([pts[0], pts[0]])
         yy = vstack([pts[1], regression(pts, REGRESSAND_DEGREE)(pts[0])])
@@ -38,7 +37,6 @@ def main():
         reg_func = lambda x: regression(pts, REGRESSAND_DEGREE)(x)
         plotter.measure_error(reg_func, pts)
 
-    plotter.save('/tmp/test.png')
     plotter.show()
 
 if __name__ == "__main__":
