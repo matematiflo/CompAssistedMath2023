@@ -7,7 +7,7 @@ This is the GitHub repository for the *Introduction to Lean* part of the **(Pro)
 
 Below you will find the programme of the seminar. For each week, there is a corresponding `.lean` file, which you can use to practice. You can also view a markdown version of the weekly files by clicking on the corresponding `.md` files.
 
-In order to work on the `.lean` files, several options are available:
+In order to work on the `.lean` files, various options are available:
 
 * Download any of the files and open it in your [CoCalc](https://cocalc.com) account. *This is the recommended option to get started.*
 * Go to the [GitHub webpage for this repository](https://github.com/matematiflo/Comp_assisted_math/) and open a *Codespace* (this is done directly in your browser). You can also fork the repository and then open the Codespace from within your forked copy.
