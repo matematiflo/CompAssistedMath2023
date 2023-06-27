@@ -17,5 +17,7 @@ Be aware that *Lean 4* is not backwards-compatible with *Lean 3* and that the `.
 
 **Programme of the *Lean* seminar:**
 
-1. Introduction to *Lean 3*
-2.
+1. Definitions and equality of terms (`reflexivity`, `exact`, `apply`, `intro`, `cases`)
+2. Functions and logical implications (`show`, `split`, `by_contradiction`)
+3. Inductive types (`induction`, `use`, `by_cases`)
+4. Formalising mathematical objects (`class`, `instance`, `structure`)
