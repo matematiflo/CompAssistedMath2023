@@ -379,3 +379,7 @@ With these two remarks, we see that `(31 / 10) * 52` is equal to `52 * (31 / 10)
 
 def m : ℕ := 42
 -- #print m
+
+/-
+---
+-/

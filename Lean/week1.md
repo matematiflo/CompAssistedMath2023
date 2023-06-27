@@ -222,7 +222,7 @@ end
 
 ### **Exercise 1**
 
-Use the `reflexivity` tactic to prove the results below.
+> Use the `reflexivity` tactic to prove the results below.
 
 ```lean
 -- def my_two_sentences_are_the_same : my_first_sentence = my_second_sentence := 
@@ -271,7 +271,7 @@ def my_brother_and_I_agree : my_favourite_integer = my_brother_s_favourite_integ
 
 ### **Exercise 2**
 
-Use term mode to write a proof of `1 + 1 = 2`.
+> Use term mode to write a proof of `1 + 1 = 2`.
 
 Note that `eq.refl (1 + 1)` and `eq.refl 2` work equally well and check that this is also the case for the definitions of the terms `my_two_sentences_are_the_same` and `my_brother_and_I_agree`.
 
@@ -341,7 +341,7 @@ example : 2.8 = 2.7 := by {refl}
 
 ### **Exercise 3**
 
-Go to the [*modus ponens* file](https://github.com/matematiflo/Comp_assisted_math/blob/2023_SoSe/Lean/Practice_folder/modus_ponens.lean) and learn about the `exact` tactic.
+> Go to the [*modus ponens* file](https://github.com/matematiflo/Comp_assisted_math/blob/2023_SoSe/Lean/Practice_folder/modus_ponens.lean) and learn about the `exact` tactic.
 
 ## Answers to some of the questions asked during the session
 
@@ -375,7 +375,7 @@ def A : ℕ := 41 - 42
 
 Now, in *integers*, the result should be different. Namely, the unique `r` such that `r + m = n` is now allowed to be negative.
 
-We can achieve that by changing *only one parameter* in the previous definition (apart from the name of the term itself). Namely, we change `ℕ` to `ℤ`, which is accessible via `\Z` or `\int` (the type `ℤ` is also denoted `int`). -/
+We can achieve that by changing *only one parameter* in the previous definition (apart from the name of the term itself). Namely, we change `ℕ` to `ℤ`, which is accessible via `\Z` or `\int` (the type `ℤ` is also denoted `int`).
 
 ```lean
 def B : ℤ := 41 - 42
@@ -425,7 +425,7 @@ If you include the line
 -- import data.rat.basic 
 ```
 
-*at the beginning of this file*, then the following will also be computed in `ℚ`.
+*at the beginning* of this file, then the following will also be computed in `ℚ`.
 
 ```lean
 -- #eval (31 / 10 * 52 : ℚ)
