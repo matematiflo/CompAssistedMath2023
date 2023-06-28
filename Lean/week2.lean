@@ -2,7 +2,7 @@
 
 **Author:** Florent Schaffhauser, Uni-Heidelberg, Summer Semester 2023
 
-Our goal in this file is to keep exploring basic definitions and tactics in Lean. It is a direct follow-up to the previous [*Introduction to Lean*](https://github.com/matematiflo/Comp_assisted_math/blob/2023_SoSe/Lean/week1.lean).
+Our goal in this file is to keep exploring basic definitions and tactics in Lean. It is a direct follow-up to the previous [*Introduction to Lean*](https://github.com/matematiflo/Comp_assisted_math/blob/2023_SoSe/Lean/week1.md).
 
 The main objective today is to learn about functions:
 
