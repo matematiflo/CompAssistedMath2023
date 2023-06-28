@@ -7,8 +7,8 @@ Our goal in this file is to keep exploring basic definitions and tactics in Lean
 The main objective today is to learn about functions:
 
 * How to define basic functions in Lean
-* How to *curry* and *uncurry* functions
-* How to define *dependent types* and how to use them
+* What it means to *curry* and *uncurry* a function of two variables
+* How to use functions to write and prove basic logical implications
 
 As a matter of fact, we have already seen an important example of a function, in the [*modus ponens* file](https://github.com/matematiflo/Comp_assisted_math/blob/2023_SoSe/Lean/Practice_folder/modus_ponens.lean), where we also learned about the following tactics:
 
@@ -97,12 +97,10 @@ example : f₂ = f₃ := by { refl }
 
 /- ### Exercise 1
 
-> Given a type `X : Type`, define an "identity function" from `X` to itself`.
+> Given a type `X : Type`, define an "identity function" from `X` to itself.
 -/
 
-/- ## **Functions of two variables**
-
-### Currying and uncurrying
+/- ### Currying and uncurrying
 
 We are used to defining functions of two or more variables as functions from a product set to another set. For instance, a real-valued function of two real variables can be formalised as term of type `ℝ² → ℝ` (the superscript notation `²` is obtained by typing in `\^2` followed by a space character).
 
@@ -111,7 +109,7 @@ To define a term of type `ℝ² → ℝ`, we need to define the type `ℝ²` fir
 #check (3,4)
 
 #check ℕ × ℤ  
-#check ((3, -4) : ℕ × ℤ)
+#check ( (3, -4) : ℕ × ℤ )
 
 /- By construction, the type `T₁ × T₂` comes equipped with two projection functions `fst : T₁ × T₂ → T₁` and `snd : T₁ × T₂ → T₂`, that we can use to define functions `h : T₁ × T₂ → T₃`. -/
 
@@ -156,7 +154,9 @@ variable (q : ℕ)
 
 > Given types `X Y Z : Types`, define a function `compose` sending functions `f : X → Y` and `g : Y → Z` to a function `compose f g` from `X` to `Z`, sending a term `x : X` to the term `g (f x)`.  
 
-## **Negatives**
+### ***Logical implications***
+
+### Negatives
 
 There is a proposition (i.e. a term of type `Prop`) called `false` and characterised by the fact that it does not admit a proof. In other words, `false` is a type that has no terms.
 
@@ -173,7 +173,7 @@ variables P : Prop
 
 /- Here is an example of a statement using negatives. It is known as *modus tollens* and it says that `( (P → Q) ∧ ¬Q ) → ¬P`. In other words, if we can prove `P → Q` and `¬Q`, then we can prove `¬Q`.
 
-In order to write a proof of this statement (and many other involving `¬`), it is usefull to keep in mind that a term of type `¬P` is (by definition) a term of type `P → false`, meaning a *function* from `P` to `false`, and that it should be manipulated as such. -/
+In order to write a proof of this statement (and many other involving `¬`), it is useful to keep in mind that a term of type `¬P` is (by definition) a term of type `P → false`, meaning a *function* from `P` to `false`, and that it should be manipulated as such. -/
 
 def MT { P Q : Prop } ( hPQ : P → Q ) ( nq : ¬Q ) : ¬P :=
 begin
@@ -185,6 +185,8 @@ begin
 end
 
 /- The `show` tactic that was used in the proof above is facultative: it enables us to visualise better what we are supposed to prove. It works if, when you write `show t`, Lean is able to find a term that matches `t` in the target.
+
+### The contrapositive
 
 As an application of our definition of the function `MT`, we can prove the implication `(P → Q) → (¬Q → ¬P)`. -/
 
@@ -245,7 +247,7 @@ end
 
 Since `false` is a type that has no terms, what we did means that adding a proof of `¬P` to our local context was, in a way, illicit. In other words, we cannot assume that `¬P` has a proof (for otherwise we get a proof of `false`) so this must mean that `P` has a proof.
 
-This is indeed the case for us: we *are* working under the assumption that either `P` or `¬P` has a proof. This known as the [*Law of Excluded Middle*](https://en.wikipedia.org/wiki/Law_of_excluded_middle) (LEM) and [it is needed](https://en.wikipedia.org/wiki/Contraposition#Intuitionistic_logic) in order to prove the equivalence `(P → Q) ↔ (¬Q → ¬P)`.
+This is indeed the case for us: we *are working* under the assumption that either `P` or `¬P` has a proof. This known as the [*Law of Excluded Middle*](https://en.wikipedia.org/wiki/Law_of_excluded_middle) (LEM) and [it is needed](https://en.wikipedia.org/wiki/Contraposition#Intuitionistic_logic) in order to prove the equivalence `(P → Q) ↔ (¬Q → ¬P)`.
 
 Note that, since we are now equipped with the tactic `by_contradiction`, we can get rid of the double negatives in the proof of the `( ¬Q → ¬P ) → ( ¬¬P → ¬¬Q )` and simply prove that `( ¬Q → ¬P ) → ( P → Q )`. -/
 
