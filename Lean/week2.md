@@ -25,12 +25,12 @@ In what follows, we will encounter new tactics:
 
 Recall that in [week1.lean](https://github.com/matematiflo/Comp_assisted_math/blob/2023_SoSe/Lean/week1.lean), we also learned about the `reflexivity` tactic, usually abbreaviated to `refl`.
 
-We start by importing the `data.int.basic` library, which will be used in this file. The `import` command must be used at the beginning of the .lean file.
+We start by importing the `data.nat.pow` library, which will be used in this file. The `import` command must be used at the beginning of the .lean file.
 
 As a consequence of this import, the basic `goals accomplished` message of Lean gets upgraded to the fancy `goals accomplished 🎉` version :-)
 
 ```lean
-import data.int.basic
+import data.nat.pow
 ```
 
 ## **Defining a function**
@@ -160,7 +160,7 @@ The process of replacing `h : T₁ × T₂ → T₃` by `g : T₁ → (T₂ → 
 
 This is basically saying that we can replace a function of two variables `h` from `T₁ × T₂` to `T₃` by a *family* `g` (indexed by `T₁`) of [*partial applications*](https://en.wikipedia.org/wiki/Partial_application) from `T₂` to `T₃`.
 
-Here is for instance a family of sequences of natural numbers. This uses the power function (denoted using the caret symbol `^`), which was imported at the beginning of this file via the `import data.int.basic` command.
+Here is for instance a family of sequences of natural numbers. This uses the power function (denoted using the caret symbol `^`), which was imported at the beginning of this file via the `import data.nat.pow` command.
 
 ```lean
 def u (q : ℕ) (n : ℕ) : ℕ := q^n
