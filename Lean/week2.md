@@ -282,7 +282,7 @@ Since `false` is a type that has no terms, what we did means that adding a proof
 
 This is indeed the case for us: we *are working* under the assumption that either `P` or `¬P` has a proof. This known as the [*Law of Excluded Middle*](https://en.wikipedia.org/wiki/Law_of_excluded_middle) (LEM) and [it is needed](https://en.wikipedia.org/wiki/Contraposition#Intuitionistic_logic) in order to prove the equivalence `(P → Q) ↔ (¬Q → ¬P)`.
 
-Note that, since we are now equipped with the tactic `by_contradiction`, we can get rid of the double negatives in the proof of the `( ¬Q → ¬P ) → ( ¬¬P → ¬¬Q )` and simply prove that `( ¬Q → ¬P ) → ( P → Q )`.
+Note that, since we are now equipped with the tactic `by_contradiction`, we can get rid of the double negatives in the proof of the implication `( ¬Q → ¬P ) → ( ¬¬P → ¬¬Q )` and prove that `( ¬Q → ¬P ) → ( P → Q )`.
 
 ```lean
 def contra { P Q : Prop } ( H : ¬Q →  ¬P ) : P → Q :=
