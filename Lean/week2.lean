@@ -30,6 +30,7 @@ We start by importing the `data.nat.pow` library, which will be used in this fil
 As a consequence of this import, the basic `goals accomplished` message of Lean gets upgraded to the fancy `goals accomplished 🎉` version :-) -/
 
 import data.nat.pow
+import data.real.basic
 
 /- ## **Defining a function**
 
@@ -113,8 +114,10 @@ To define a term of type `ℝ² → ℝ`, we need to define the type `ℝ²` fir
 
 /- By construction, the type `T₁ × T₂` comes equipped with two projection functions `fst : T₁ × T₂ → T₁` and `snd : T₁ × T₂ → T₂`, that we can use to define functions `h : T₁ × T₂ → T₃`. -/
 
-#check (3,4).1
-#check (3,4).2
+#check (3,4).fst
+#check (3,4).snd
+
+/- They can also be denoted by `.1` and `.2`. -/
 
 #eval (3,4).1
 #eval (3,4).2
@@ -149,6 +152,12 @@ variable (q : ℕ)
 
 #check u q
 #eval u 2 4
+
+/- It is easy to iterate this process and define functions  of three variables or more. The upshot is that, under this form, functions of three real variables can be defined without defining a type `ℝ³` first. -/
+
+def F ( x y z : ℝ ) : ℝ := x^2 - y + z
+
+#check F
 
 /- ### Exercise 2
 
