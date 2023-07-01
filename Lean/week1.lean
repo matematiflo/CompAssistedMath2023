@@ -51,7 +51,7 @@ If `#check t` returns `T`, one says that **`t` is a term of type `T`**. This is 
 /- If `T` is a type, `list T` is the type of *lists of terms of type `T`*. We will see later how the lists of terms of type `T` are defined. -/
 
 #check list string
-#check list nat 
+#check list nat
 
 /- Note that we cannot have a list containing terms of different types. Nor can we have a list of lists, which might be counterintuitive compared to other programming languages you may know (it comes from the way `list` is defined, which we will see later.)
 
