@@ -13,9 +13,7 @@ Statements of the form `∀ (n : ℕ), P n`, where `P : ℕ → Prop` is a *sequ
 
 Similarly, we could have a statement of the form `∀ (n : ℤ), P n`. For instance, the fact that the square of an integer `n` is non-negative, can be written as follows
 
-````lean
 `∀ (n : ℤ), n^2 ≥ 0`
-````
 
 and this, too, is a statement that Lean understands.
 
