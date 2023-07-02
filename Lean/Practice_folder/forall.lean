@@ -62,7 +62,7 @@ Write a proof of `∀ (n : ℤ), n^2 ≥ 0` without using the function `sq_nonne
 
 Hint: using `by_cases n ≥ 0`, separate the cases `n ≥ 0` and `n ≤ 0`. When `n ≥ 0`, then find in `mathlib` a proof of `∀ a b, (a ≥ 0 ∧ b ≥ 0) → ab ≥ 0` (or something similar) and apply it with `a = b = n`. When `n ≤ 0`, argue that `n^2 = (-n)^2` and that `-n ≥ 0`, then repeat the previous argument.
 
-Here is something to get you started. Try to fill in the `sorry`s. The solution is available in the [Solutions](https://github.com/matematiflo/Comp_assisted_math/blob/2023_SoSe/Lean/Practice_folder/Solutions/) folder. -/
+Here is something to get you started. Try to fill in the `sorry`'s. The solution is available in the [Solutions](https://github.com/matematiflo/Comp_assisted_math/blob/2023_SoSe/Lean/Practice_folder/Solutions/) folder. -/
 
 example : ∀ (n : ℤ), n^2 ≥ 0 :=
 begin
@@ -115,6 +115,8 @@ begin
   exact p0,
   exact ih k hk,
 end
+
+/- You can think of the function `induction_pple` as a kind of macro, that we program once and for all and then use in our code. -/
 
 def fac_pos : ∀ (n : ℕ), n! > 0 :=
 begin
