@@ -3,7 +3,7 @@
 
 ````lean
 import tactic
-attribute [pp_nodot] nat.succ -- used to make sure that `n.succ` appears as `succ n`.
+attribute [pp_nodot] nat.succ -- used to make sure that `n.succ` appears as `succ n` (`pp` stands for *pretty printer*).
 open nat
 ````
 
