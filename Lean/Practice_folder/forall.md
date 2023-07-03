@@ -21,7 +21,7 @@ and this, too, is a statement that Lean understands.
 #check ∀ (n : ℤ), n^2 ≥ 0
 ````
 
-In fact, this result is proved under a very general form in `mathlib`, the mathematical library of Lean. It is recorded there as a function `sq_nonneg : R → Prop` which sends a term `a` of type `R` (where `R` is an ordered ring) to a proof of the proposition `a^2 ≥ 0`.
+In fact, this result is proved under a much more general form in `mathlib`, the mathematical library of Lean. It is recorded there as a function `sq_nonneg : R → Prop` which sends a term `a` of type `R` (where `R` is an ordered ring) to a proof of the proposition `a^2 ≥ 0`.
 
 ````lean
 #check @sq_nonneg
