@@ -143,13 +143,13 @@ def fac_pos : ∀ (n : ℕ), n! > 0 :=
 begin
   apply induction_pple,
   {
-    -- rw fac,
+    -- rw fac, -- (can be omitted)
     exact zero_lt_one,
   },
   {
     intro k,
     intro h,
-    rw fac, -- unfold fac (also works)
+    rw fac, -- unfold fac -- (also works)
     apply mul_pos,
     apply succ_pos,
     exact h,
