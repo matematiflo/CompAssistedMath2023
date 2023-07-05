@@ -2,8 +2,10 @@
 /- # Dependent types -/
 
 import tactic
-attribute [pp_nodot] nat.succ -- used to make sure that `n.succ` appears as `succ n` (`pp` stands for *pretty printer*).
+attribute [pp_nodot] nat.succ
 open nat
+
+/- The `attribute [pp_nodot] nat.succ` line is used to make sure that `n.succ` appears as `succ n` (the `pp` here stands for *pretty printer*). -/
 
 /- ## Universal statements (`∀ x, P x`)
 

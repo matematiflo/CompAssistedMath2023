@@ -7,7 +7,7 @@
 
 Below are the pre-requisites for this exercise. The solution appears right afterwards.
 
-````lean
+```lean
 import tactic
 
 def MT { P Q : Prop } ( hPQ : P → Q ) ( nq : ¬Q ) : ¬P :=
@@ -33,13 +33,13 @@ exact MT,
 intro H,
 exact contra H,
 end
-````
+```
 
 ## Exercise 1 of [forall.lean](https://github.com/matematiflo/Comp_assisted_math/blob/2023_SoSe/Lean/Practice_folder/forall.md)
 
 A proof that squares are positive in `ℤ` (using `mathlib` but not using the function `sq_nonneg`).
 
-````lean
+```lean
 example : ∀ (n : ℤ), n^2 ≥ 0 :=
 begin
   intro n,
@@ -62,11 +62,11 @@ begin
       },
   },
 end
-````
+```
 
 ## Exercise 2 of [forall.lean](https://github.com/matematiflo/Comp_assisted_math/blob/2023_SoSe/Lean/Practice_folder/forall.md)
 
-````lean
+```lean
 def S : ℕ → ℚ
 | 0 :=  0
 | (n+1) := (n + 1) + S n
@@ -95,6 +95,6 @@ begin
     ring,
   },
 end
-````
+```
 
 ---
