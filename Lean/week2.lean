@@ -243,13 +243,15 @@ For the implication `¬¬P → P`, however, more is needed. We have to argue *by
 def double_neg {P : Prop} : P ↔ ¬¬P :=
 begin
   split,
-  intro p,
-  show ¬P → false,
-  intro f,
-  exact f p,
-  intro g,
-  by_contradiction,
-  exact g h,
+  { intro p,
+    show ¬P → false,
+    intro f,
+    exact f p,
+  },
+  { intro g,
+    by_contradiction,
+    exact g h,
+  },
 end
 
 /- So, after using the tactic `by_contradiction` (which can be abbreviated to `by_contra`), we have proofs of *both* `¬¬P` and `¬P` in our local context, and this is how we produce a proof of `false`.
@@ -263,7 +265,7 @@ Note that, since we are now equipped with the tactic `by_contradiction`, we can 
 def contra { P Q : Prop } ( H : ¬Q →  ¬P ) : P → Q :=
 begin
   intro p,
-  by_contradiction,
+  by_contra,
   exact (H h) p,
 end
 
