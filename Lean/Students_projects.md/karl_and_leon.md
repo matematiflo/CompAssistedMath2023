@@ -2,7 +2,7 @@
 
 **Authors:** Leon Burgard, Karl Schamel, Seminar: Computer assisted mathematics by Florent Schaffhauser, Summer Semester 2023
 
-The last world of the Natural Number Game is about inequalities, so in the first levels you only get to know a little bit how the ≤ sign is implemented in lean and to get used with it.
+The last world of the Natural Number Game is about inequalities, so in the first levels you get to know a little bit how the ≤ sign is implemented in lean and to get used with it.
 The main goal in this World is to proof that for all naturals a and b, a &lt b⟺succ(a)≤b.
 
 ## Level 1
@@ -309,6 +309,8 @@ end
 ```
 
 ## Level 17
+
+After proofing both implications of the main goal of this world in level 16 and 17, you now just need to apply those two functions and the last world of the Natural Numer Game is completed.
 
 ```lean
 -- For all naturals a and b, a&lt b⟺succ(a)≤b.
