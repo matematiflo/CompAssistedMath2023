@@ -28,13 +28,11 @@ We'll prove the statement by *Induction* over $n$.
 * $n=0$. Because $S$ needs to be nonempty, there's only one possibility for a subset of $\left\lbrace 0, ..., n \right\rbrace = \left\lbrace 0 \right\rbrace$ , which is: $S = \left\lbrace  0 
 ight
 brace $. Then $k=0$ obviously satisfies $k \leq l, \forall l \in S$ and therefore is the smallest element of $S$.
-* $n \rightarrow n+1$: Let $S \subset \left\lbrace 0, ..., n+1
-ight
-brace $ be a nonempty subset. We observe two cases:
+* $n \rightarrow n+1$: Let $S \subset \left\lbrace 0, ..., n+1\right\rbrace$ be a nonempty subset. We observe two cases:
 1. $S = \left\lbrace n+1 \right\rbrace$:
     Then $k=n+1$ is obviously the smallest element of $S$.
 2. $S \neq \left\lbrace n+1\right\rbrace$:
-    Let's consider the set $T = S \cap \left\lbrace 0, ..., n \right\rbrace $, which eliminates the element $n+1$ in case $(n+1) \in S$.
+    Let's consider the set $T = S \cap \left\lbrace 0, ..., n \right\rbrace$, which eliminates the element $n+1$ in case $(n+1) \in S$.
     Because $T \subset \left\lbrace 0, ..., n\right\rbrace$ we can apply our induction hypothesis. So $T$ has a smallest element $k$.
     If $(n+1) \in S$ then $k < n+1$, so $k$ is also the smallest element of $S$.
 
@@ -50,9 +48,9 @@ $$
 **Proof of Theorem**
 
 Let $S \subset \mathbb{N}$ be a nonempty subset and $n \in S$. Let $T = S \cap \left\lbrace 0, ..., n \right\rbrace$.
-Then $T \neq \emptyset$, because $n \in S \land n \in \left\lbrace 0, ..., n \right\rbrace $.
+Then $T \neq \emptyset$, because $n \in S \land n \in \left\lbrace 0, ..., n \right\rbrace$.
 Because $T \subset \left\lbrace 0, ..., n \right\rbrace$ we can apply our Lemma, so there $\exists k \in T, \forall l \in T, k \leq l$ which is the smallest element of $T$.
-So $k$ is the smallest element of $S \cap \left\lbrace 0, ..., n \right\rbrace $, but it's also the smallest element of $S$, because $\forall l \in S - \left\lbrace 0, ..., n \right\rbrace, k < l$ and $k \leq n$ and $S = (S \cap \left\lbrace 0, ..., n\right\rbrace) \cup (S - \left\lbrace 0, ..., n\right\rbrace)$.
+So $k$ is the smallest element of $S \cap \left\lbrace 0, ..., n \right\rbrace$, but it's also the smallest element of $S$, because $\forall l \in S - \left\lbrace 0, ..., n \right\rbrace, k < l$ and $k \leq n$ and $S = (S \cap \left\lbrace 0, ..., n\right\rbrace) \cup (S - \left\lbrace 0, ..., n\right\rbrace)$.
 That proves our Theorem. $q.e.d.$
 
 ## 3. Lean
@@ -63,10 +61,10 @@ Like in our proof we split our theorem into a lemma and our main theorem to make
 
 Let's start with the lemma:
 
-$$ \forall n \in \mathbb{N}, \forall S \subset \left\lbrace 0, ..., n\right\rbrace , S \neq \emptyset : \exists k \in S, \forall l \in S, k \leq l$$
+$$ \forall n \in \mathbb{N}, \forall S \subset \left\lbrace 0, ..., n\right\rbrace, S \neq \emptyset : \exists k \in S, \forall l \in S, k \leq l$$
 
-Our first difficulty was generalizing a nonempty subset of $\left\lbrace 0, ..., n \right\rbrace $. We therefore need three things in lean. First: specifying any subset. Lean offers the function ```set``` which does exactly this, although it is a bit confusing that it's not called ```subset```. To make it nonempty we need a hypothesis giving our subset ```S``` the attribute ```nonempty```. We tried it with ```[hS : nonempty S]```, but that seems deprecated and is impossible to revert. So instead we use ```[hS : S.nonempty]```. 
-For the set $\left\lbrace 0, ..., n \right\rbrace $ we tried two approaches: ```fin(n + 1)``` and ```finset.range (n + 1)```. Both define the set $\left\lbrace x \in \mathbb{N} \mid x < n + 1 \right\rbrace  = \left\lbrace 0, ..., n\right\rbrace $ which is a bit confusing, because in the proof we use $n$ while the Lean equivalent is $n + 1$. They both work perfectly fine, but we approaches because the have different theorems and functions predefined. In the end we got a bit further with ```fin```, so we'll show that approach.
+Our first difficulty was generalizing a nonempty subset of $\left\lbrace 0, ..., n \right\rbrace$. We therefore need three things in lean. First: specifying any subset. Lean offers the function ```set``` which does exactly this, although it is a bit confusing that it's not called ```subset```. To make it nonempty we need a hypothesis giving our subset ```S``` the attribute ```nonempty```. We tried it with ```[hS : nonempty S]```, but that seems deprecated and is impossible to revert. So instead we use ```[hS : S.nonempty]```. 
+For the set $\left\lbrace 0, ..., n \right\rbrace$ we tried two approaches: ```fin(n + 1)``` and ```finset.range (n + 1)```. Both define the set $\left\lbrace x \in \mathbb{N} \mid x < n + 1 \right\rbrace  = \left\lbrace 0, ..., n\right\rbrace$ which is a bit confusing, because in the proof we use $n$ while the Lean equivalent is $n + 1$. They both work perfectly fine, but we approaches because the have different theorems and functions predefined. In the end we got a bit further with ```fin```, so we'll show that approach.
 The rest is quite straight forward.
 
 ```lean
@@ -96,9 +94,7 @@ Starting with our lemma we obviously start with induction over $n$ like in our p
     induction n with a ha,
 ```
 
-We now want to prove our induction start where $n = 0$. In that case $k = 0$, because it's the only element in a subset of $\left\lbrace 0
-ight
-brace $. So the ```use``` tactic seemed to be right.
+We now want to prove our induction start where $n = 0$. In that case $k = 0$, because it's the only element in a subset of $\left\lbrace 0\right\rbrace$. So the ```use``` tactic seemed to be right.
 
 ```lean
     {
