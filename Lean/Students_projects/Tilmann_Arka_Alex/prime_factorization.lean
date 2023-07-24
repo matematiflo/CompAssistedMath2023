@@ -129,7 +129,7 @@ begin
       by_cases el1_p : el1.prime,
       {by_cases el2_p : el2.prime,
         --case el1 prime ∧ el2 prime
-        {,},
+        {sorry,},
         --case el1 prime ∧ el2 ¬ prime
         {sorry,},},
       
