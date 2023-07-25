@@ -51,6 +51,6 @@ theorem well_ordering (S : set ℕ) [hS : S.nonempty] : ∃ (k : S), ∀ (l : S)
     have n : S := sorry,
     -- proof
 
-    -- exact well_ordering_0n _ _,
+    -- apply well_ordering_0n _ _,
     sorry,
   end
