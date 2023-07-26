@@ -163,7 +163,7 @@ cases a with k h,
 left,
 apply zero_le,
  
-cases ih k,
+cases (ih k),
 left,
 apply succ_le_succ,
 exact h,
