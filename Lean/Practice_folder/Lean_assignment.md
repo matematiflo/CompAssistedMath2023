@@ -72,7 +72,7 @@ begin
   induction n with k hk,
   { intro j,
     intro h,
-    have hj : j = 0 := by linarith,
+    have hj : j = 0 := by linarith, -- see the solution file for a more detailed proof
     rw hj,
     sorry,
   },
