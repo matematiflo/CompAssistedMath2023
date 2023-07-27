@@ -85,19 +85,18 @@ def height {A : Type u} : (Tree A) → ℕ
 lemma pow_two_is_double : ∀ (a : ℕ), 2^(a + 1) = (2^a) + (2^a) := by intro;induction a;repeat {ring_nf}.
 
 def upper_bound_of_nodes : ∀ {A : Type u} (t : Tree A),
-                (pow 2 ((height t) + 1)) >= (count_nodes t) :=
+                (pow 2 (height t)) - 1 >= (count_nodes t) :=
 begin
 intros,
-induction t,
+induction t with t t' t'',
 repeat {unfold height count_nodes, simp},
 split_ifs,
 all_goals {rw pow_two_is_double},
-  have a : 2 ^ (height t_ᾰ_1 + 1) ≥ 2 ^ (height t_ᾰ_2 + 1),
+  have a : 2 ^ (height t') ≥ 2 ^ (height t''),
   apply nat.pow_le_pow_of_le_right,
   repeat {omega},
   
-  
-  have a : 2 ^ (height t_ᾰ_1 + 1) < 2 ^ (height t_ᾰ_2 + 1),
+  have a : 2 ^ (height t') < 2 ^ (height t''),
   apply nat.pow_lt_pow_of_lt_right,
   repeat {omega},
 end
