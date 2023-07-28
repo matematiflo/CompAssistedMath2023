@@ -164,7 +164,8 @@ Sadly we have almost nothing here. The only thing we could do was introducing a 
 ```
 
 ## 4. Conclusion
-Of course we're not happy that we couln't finalize our proof. But we're still quite proud on how far we came, the structure of the proof of the lemma looks quite good. We definetly learned that generalizing maths is way more complicated than just typing some weired symbols on your machine.
-Anyway, we're both (more or less) exited about this tool and how it works and hope to get to know it better in the future.
+Though this was a difficult project as there is quite a learning curve with Lean, we are happy about and proud of what we have accomplished. Even just formalizing our statements was fairly hard as there are different ways of doing it that allow for different tactics to be used, but we worked through this and managed to accomplish what we set out to do. Along the way, we were thrilled about every part of a statement we managed to prove. Overall, this project was a rewarding experience.
+We are both very excited about what we learned and are keen on learning more about Lean in the future. It is a very helpful tool and we look forward to continue using it and hone our skills
+
 
 *Janosch Alze, Anna-Lena Herzog, Summer Semester 2023, Heidelberg University*
