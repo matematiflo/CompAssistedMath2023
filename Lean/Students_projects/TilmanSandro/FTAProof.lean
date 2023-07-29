@@ -34,12 +34,10 @@ by sorry
 
  /-Lemma 3-/
 
-/-In this lemma we rely on linear endomorphisms, it would need to be finished by including the notion of commutativity.
-I attempt this by restating it for matrices associated with the linear operators for which commutativity is easy to state 
-as  (A*B=B*A).-/
+/-We state this lemma once for commuting linear endomorphisms and once for the associated matrices.-/
 
  lemma comm_lin_opHasEigenvector [FiniteDimensional ℂ V] [Nontrivial V] (f : End ℂ V) (g : End ℂ V) (h : End ℂ V) 
- : (m ≥ 1) ∧ ¬(m ∣ (finrank ℂ  V))∧ (∃ v : V , f.HasEigenvector μ v)→ (∃ v : V , g.HasEigenvector μ v ∧ h.HasEigenvector ν v)  := sorry
+ : (m ≥ 1) ∧ ¬(m ∣ (finrank ℂ  V))∧(g ∘ h = h ∘ g ) ∧ (∃ v : V , f.HasEigenvector μ v)→ (∃ v : V , g.HasEigenvector μ v ∧ h.HasEigenvector ν v)  := sorry
 
  lemma comm_MatHasEigenvector (A : Matrix (Fin m) (Fin m) F ) (B : Matrix (Fin m) (Fin m) F) (C : Matrix (Fin m) (Fin m) F): 
  (A*B=B*A) ∧ (n ≥ 1) ∧ ¬(n ∣ m) ∧ (∃ (v : Fin m → F) , IsEigenvector A v) 
