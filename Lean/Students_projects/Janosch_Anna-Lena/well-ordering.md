@@ -1,4 +1,5 @@
 # Well Ordering of the Natural Numbers
+
 *Lean Project of Janosch and Anna-Lena in the Proseminar "Computer-assisted Mathematics"*
 
 ## 1. Goal
@@ -13,7 +14,7 @@ This can be proven by induction, as we will do in this project. Furthermore, the
 
 ## 2. Proof
 
-Our proof is based on a proof from the book *Topology* by Munkres, that we found on stackexchange.
+Our proof is based on a proof from the book *Topology*.
 
 We'll first prove the following weaker **Lemma**:
 
@@ -25,10 +26,10 @@ $$
 
 We'll prove the statement by *Induction* over $n$.
 
-* $n=0$. Because $S$ needs to be nonempty, there's only one possibility for a subset of $\left\lbrace 0, ..., n \right\rbrace = \left\lbrace 0 \right\rbrace$ , which is: $S = \left\lbrace  0 
-ight
-brace $. Then $k=0$ obviously satisfies $k \leq l, \forall l \in S$ and therefore is the smallest element of $S$.
+* $n=0$. Because $S$ needs to be nonempty, there's only one possibility for a subset of $\left\lbrace 0, ..., n \right\rbrace = \left\lbrace 0 \right\rbrace$ , which is: $S = \left\lbrace  0 \right\rbrace$. Then $k=0$ obviously satisfies $k \leq l, \forall l \in S$ and therefore is the smallest element of $S$.
+
 * $n \rightarrow n+1$: Let $S \subset \left\lbrace 0, ..., n+1\right\rbrace$ be a nonempty subset. We observe two cases:
+
 1. $S = \left\lbrace n+1 \right\rbrace$:
     Then $k=n+1$ is obviously the smallest element of $S$.
 2. $S \neq \left\lbrace n+1\right\rbrace$:
@@ -36,7 +37,7 @@ brace $. Then $k=0$ obviously satisfies $k \leq l, \forall l \in S$ and therefor
     Because $T \subset \left\lbrace 0, ..., n\right\rbrace$ we can apply our induction hypothesis. So $T$ has a smallest element $k$.
     If $(n+1) \in S$ then $k < n+1$, so $k$ is also the smallest element of $S$.
 
-Therefor $S$ always has a smallest element $k \leq l, \forall l \in S$.
+Therefore $S$ always has a smallest element $k \leq l, \forall l \in S$.
 $q.e.d.$
 
 Let's return to our **Theorem**.
@@ -50,7 +51,7 @@ $$
 Let $S \subset \mathbb{N}$ be a nonempty subset and $n \in S$. Let $T = S \cap \left\lbrace 0, ..., n \right\rbrace$.
 Then $T \neq \emptyset$, because $n \in S \land n \in \left\lbrace 0, ..., n \right\rbrace$.
 Because $T \subset \left\lbrace 0, ..., n \right\rbrace$ we can apply our Lemma, so there $\exists k \in T, \forall l \in T, k \leq l$ which is the smallest element of $T$.
-So $k$ is the smallest element of $S \cap \left\lbrace 0, ..., n \right\rbrace$, but it's also the smallest element of $S$, because $\forall l \in S - \left\lbrace 0, ..., n \right\rbrace, k < l$ and $k \leq n$ and $S = (S \cap \left\lbrace 0, ..., n\right\rbrace) \cup (S - \left\lbrace 0, ..., n\right\rbrace)$.
+So $k$ is the smallest element of $S \cap \left\lbrace 0, ..., n \right\rbrace$, but it's also the smallest element of $S$, because $k \leq n$ and $\forall l \in S - \left\lbrace 0, ..., n \right\rbrace : n < l \Rightarrow k < l$  and $S = (S \cap \left\lbrace 0, ..., n\right\rbrace) \cup (S - \left\lbrace 0, ..., n\right\rbrace)$.
 That proves our Theorem. $q.e.d.$
 
 ## 3. Lean
@@ -77,9 +78,9 @@ The theorem, as stated before, is almost the same as the lemma, so it uses the s
 theorem well_ordering (S : set ℕ) [hS : S.nonempty] : ∃ (k : S), ∀ (l : S), k ≤ l := sorry
 ```
 
-
 ### 3.2 Proof in Lean
-When we realised that we had to work with this "weired" ```fin``` function, we already had the feeling that the Lean proof would get way more complicated than the natural number game, because it not only involved induction and lemmas regarding addition, multiplication and inequalities.
+
+When we realised that we had to work with this "weird" ```fin``` function, we already had the feeling that the Lean proof would get way more complicated than the natural number game, because it not only involved induction and lemmas regarding addition, multiplication and inequalities.
 
 That's why we did our best trying to prove our theorem with Lean tactics, but we ran into some big walls and didn't manage it fully.
 
@@ -164,7 +165,14 @@ Sadly we have almost nothing here. The only thing we could do was introducing a 
 ```
 
 ## 4. Conclusion
-Of course we're not happy that we couln't finalize our proof. But we're still quite proud on how far we came, the structure of the proof of the lemma looks quite good. We definetly learned that generalizing maths is way more complicated than just typing some weired symbols on your machine.
-Anyway, we're both (more or less) exited about this tool and how it works and hope to get to know it better in the future.
+
+Though this was a difficult project as there is quite a learning curve with Lean, we are happy about and proud of what we have accomplished. Even just formalizing our statements was fairly hard as there are different ways of doing it that allow for different tactics to be used, but we worked through this and managed to accomplish what we set out to do. Along the way, we were thrilled about every part of a statement we managed to prove. Overall, this project was a rewarding experience.
+We are both very excited about what we learned and are keen on learning more about Lean in the future. It is a very helpful tool and we look forward to continue using it and hone our skills.
+
+## 5. xkcd comic
+
+xkcd has a great comic on the well-ordering principle, which we of course want to share:
+![xkcd: Well-Ordering Principle](https://imgs.xkcd.com/comics/well_ordering_principle_2x.png)
+<https://xkcd.com/2193/>
 
 *Janosch Alze, Anna-Lena Herzog, Summer Semester 2023, Heidelberg University*
