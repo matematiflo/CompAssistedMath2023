@@ -1,3 +1,5 @@
+/- THIS FILE IS CODED IN LEAN 4 -/
+
 import Mathlib.LinearAlgebra.Matrix.IsDiag
 import Mathlib.Data.Matrix.Basic
 import Mathlib.LinearAlgebra.FiniteDimensional
@@ -21,7 +23,7 @@ def IsEigenvector (A : Matrix (Fin m) (Fin m) F) (v : Fin m → F) := (v ≠ 0) 
  open LinearMap
  open Module
 
- variable [Field ℂ] [Field ℝ]  [AddCommGroup V] [Module ℂ V]
+ variable [Field ℂ] [Field ℝ] [AddCommGroup V] [Module ℂ V]
  /-Theorem 2-/
 
  /-Theorem 2 is a restatement of the FTA in terms of eigenvectors of square matrices/ linear operators. 
