@@ -160,7 +160,6 @@ begin
     split,
     {
       rw sum_of_squares,
-      ring_nf,
       rw hL1,
       ring,
     },
