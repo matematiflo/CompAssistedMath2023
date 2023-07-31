@@ -1,0 +1,120 @@
+\documentclass{beamer}
+\usetheme{Copenhagen}
+
+
+\usepackage{appendixnumberbeamer}
+
+\usepackage{booktabs}
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\graphicspath{ {./pictures/} }
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\usepackage{subcaption}
+
+\usepackage{pdfpages}
+\setbeamertemplate{footline}[frame number]
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{color}
+\definecolor{keywordcolor}{rgb}{0.7, 0.1, 0.1}   % red
+\definecolor{tacticcolor}{rgb}{0.0, 0.1, 0.6}    % blue
+\definecolor{commentcolor}{rgb}{0.4, 0.4, 0.4}   % grey
+\definecolor{symbolcolor}{rgb}{0.0, 0.1, 0.6}    % blue
+\definecolor{sortcolor}{rgb}{0.1, 0.5, 0.1}      % green
+\definecolor{attributecolor}{rgb}{0.7, 0.1, 0.1} % red
+
+\def\lstlanguagefiles{lstlean.tex}
+% set default language
+\lstset{language=lean}
+
+\title{The Fundamental Theorem of Algebra via Linear Algebra}
+\subtitle{}
+\date{July 2023}
+\author{Tilman Jacobs, Sandro Reinhard}
+\institute{Seminar on Computer Assisted Mathemathics}
+
+\begin{document}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Introduction
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \begin{Theorem}[Fundamental Theorem of Algebra]
+              Any nonconstant polynomial with coefficients in $\mathbb{C}$ has a complex root.
+    \end{Theorem}
+  \begin{proof}[Usual Proof via Complex Analysis]
+      Apply Liouville's theorem to show that the reciprocal of a polynomial without roots is bounded and therefore already constant.
+  \end{proof}
+  However, since the FTA is a statement mostly associated with Linear Algebra we are interested in a proof via LA...
+\end{frame}
+
+
+\begin{frame}[fragile]
+    \begin{theorem}[Restatement of FTA]
+        For each $n \geq 1$, every $n \times n$ square matrix over $\mathbb{C}$ has an eigenvector in $\mathbb{C}^n$. Equivalently, for each $n \geq 1$, every linear operator on an $n$-dimensional complex vector space $V$ has an eigenvector in $V$ .
+    \end{theorem}
+    \hfill
+        \begin{lstlisting}
+variable {m : ℕ} [Fintype (Fin m)] [Field ℂ]
+
+def IsEigenvector (A : Matrix (Fin m) (Fin m) ℂ) (v : Fin m → ℂ) := (v ≠ 0) ∧ (∃ μ : ℂ, (mulVec A v) = μ • v)
+
+theorem exists_eigenvector (A : Matrix (Fin m) (Fin m) ℂ) : (m ≥ 1) → (∃ v : Fin m → ℂ, IsEigenvector A v) :=
+by sorry
+
+
+    \end{lstlisting}
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Math
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+    \begin{lemma}
+       Fix an integer $n\geq 1$ and a field $\mathbb{F}$. Suppose that, for very $\mathbb{F}$-vector space $V$ whose dimension is not divisible by $m$, every linear operator on V has an eigenvector in $V$. Then for every $\mathbb{F}$-vector space $V$ whose dimension is not divisible by $m$, each pair of commuting linear operators has a common eigenvector in $V$.
+    \end{lemma}
+    
+    \hfill
+\begin{lstlisting}[language=Lean, basicstyle=\scriptsize]
+    
+ universe u v w
+ 
+ variable {ℂ : Type v} {V : Type w} [Field ℂ] [AddCommGroup V] [Module ℂ V]
+ 
+ lemma comm_lin_opHasEigenvector [FiniteDimensional ℂ V] [Nontrivial V] (f : End ℂ V) (g : End ℂ V) (h : End ℂ V) : (m ≥ 1) ∧ ¬(m | (finrank ℂ  V))∧ (∃ v : V , f.HasEigenvector μ v)→ (∃ v : V , g.HasEigenvector μ v ∧ h.HasEigenvector ν v)  := sorry
+
+
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{corollary}
+      For every real vector space $V$ whose dimension is odd each pair of of commuting linear operators on $V$ has a common eigenvector in $V$.
+  \end{corollary}  
+
+\begin{lstlisting}[language=Lean, basicstyle=\scriptsize]
+theorem exists_eigenvector_odd (A : Matrix (Fin m) (Fin m) ℂ): (Odd(card)) → (∃ v :  Fin m → ℂ, IsEigenvector  A v) := by sorry
+\end{lstlisting}
+
+\end{frame}
+\begin{frame}
+\begin{block}{Main idea}
+    Strong Induction on the highest power of 2 dividing dimension $n$ of $V$
+\end{block}
+    $$n=2^kn':k\geq0,n' \text{odd}$$
+\end{frame}
+%\begin{frame}{Base case ($k=0$)}
+    %Let $n$ be odd, $A\in M_n(\mathbb{C})$
+%\end{frame}
+\end{document}
