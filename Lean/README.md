@@ -1,5 +1,5 @@
 
-# **Formal proofs in Lean 3**
+# **Formal proofs in Lean 3 (old version)**
 
 **Author:** Florent Schaffhauser, Uni-Heidelberg, Summer Semester 2023
 
