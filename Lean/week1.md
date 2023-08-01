@@ -259,12 +259,16 @@ But in any case, what Lean does is *compile the tactic proof into a proof term*,
 We can then use that proof term to provide a proof without entering tactic mode, simply by copying the proof term generated via the `#print` command (it will appear in the Infoview* tab if you put the keyboard cursor on the same line as the `#print` command) and pasting it after the `:=` symbol.
 
 We test this out below with the `my_brother_and_I_agree` proposition.
+<<<<<<< HEAD
 Note that, in this case, Lean does not generates a `goal accomplished` message (this is only in tactic mode). If you use a proof term, the only way to know it worked is via the absence of an error message.
+=======
+Note that, in this case, Lean does not generate a `goal accomplished` message (this is only in tactic mode). If you use a proof term, the only way to know it worked is via the absence of an error message.
+>>>>>>> pr/21
 
 ```lean
 -- #print my_two_sentences_are_the_same
 
--- def my_two_sentences_are_the_same : my_first_sentence = my_second_sentence := eq.refl my_first_sentence
+def my_two_sentences_are_the_same : my_first_sentence = my_second_sentence := eq.refl my_first_sentence
 
 def my_brother_and_I_agree : my_favourite_integer = my_brother_s_favourite_integer := eq.refl my_favourite_integer
 ```
