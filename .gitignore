@@ -1,3 +1,5 @@
 *.olean
 /_target
 /leanpkg.path
+/my_src
+.DS_Store
