@@ -228,11 +228,7 @@ We can then use that proof term to provide a proof without entering tactic mode,
 
 We test this out below with the `my_brother_and_I_agree` proposition. 
 
-<<<<<<< HEAD
 Note that, in this case, Lean does not generates a `goal accomplished` message (this is only in tactic mode). If you use a proof term, the only way to know it worked is via the absence of an error message. -/
-=======
-Note that, in this case, Lean does not generate a `goal accomplished` message (this is only in tactic mode). If you use a proof term, the only way to know it worked is via the absence of an error message. -/
->>>>>>> pr/21
 
 -- #print my_two_sentences_are_the_same
 
