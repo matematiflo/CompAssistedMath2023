@@ -1,4 +1,4 @@
-import tactic.linarith
+import init.data.list.basic
 
 attribute [pp_nodot] nat.succ
 
@@ -19,7 +19,7 @@ begin
   exact p0,
   exact ih k hk,
 end
-
+ 
 /- For the strong induction, the function will look like this. -/
 
 def strong_induction_pple {P : ℕ → Prop} (p0 : P 0) (ih : (∀ (k : ℕ), (∀ j ≤ k,  P j) → P (k + 1))) : ∀ (n : ℕ), P n := sorry
@@ -57,7 +57,7 @@ begin
   {
     intro j,
     intro h,
-    have hj : j = 0 := by linarith,
+    have hj : j = 0 := by sorry,
     rw hj,
     sorry,
   },
@@ -104,53 +104,13 @@ Recall what we did in [forall.lean](https://github.com/matematiflo/Comp_assisted
 In any case, here is a possible formulation below.
 -/
 
-def is_prime (p : ℕ) := 
+def is_prime_number (p : ℕ) := 
   (p ≥ 2) ∧ (∀ d : ℕ, ∃ q, d * q = p → (d = 1 ∨ d = p))
 
-theorem prod_of_primes : ∀ n : ℕ, (n = 0) ∨ (n=1) ∨ (∃ L : list ℕ, ∀ p ∈ L, (is_prime p) ∧ list.prod L = n) :=
+theorem prod_of_primes : ∀ n : ℕ, (n = 0) ∨ (n=1) ∨ (∃ L : list ℕ, ∀ p ∈ L, (is_prime_number p) ∧ list.prod L = n) :=
 begin
   apply strong_induction_pple_short_proof,
-  { left,
-    refl,
-  },
-  { intro k,
-    intro hk,
-    have aux : (k = 0) ∨ (k ≠ 0) := by tauto,
-    cases aux with aux1 aux2,
-    { right,
-      left,
-      rw [aux1],
-    },
-    { right,
-      right,
-      have k_plus_one_prime_or_not : (is_prime (k + 1) ) ∨ ¬(is_prime (k + 1) ) := by tauto,
-      cases k_plus_one_prime_or_not with k_plus_one_prime k_plus_one_not_prime,
-      { let L := [k + 1],
-        use L,
-        intro p,
-        intro hp,
-        have what_is_p : p = k + 1 :=  by {sorry},
-        split,
-        { rw [what_is_p],
-          exact k_plus_one_prime,
-        },
-        { have step : L.prod = 1 * (k +1) := by refl,
-          simp at step,
-          exact step,
-        },
-      },
-      { have k_plus_one_is_a_prod : ∃ a b : ℕ, a * b = k + 1 := sorry,
-        rcases k_plus_one_is_a_prod with ⟨a, b, hab⟩,
-        have ha := hk a,
-        have hb := hk b,
-        have ha1 : a ≤ k := sorry,
-        have hb1 : b ≤ k := sorry,
-        have ha2 := ha ha1,
-        have hb2 := hb hb1,
-        sorry,
-      },
-    },
-  },
+  sorry,
 end
 
 /- ---- -/
